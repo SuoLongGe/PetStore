@@ -44,7 +44,7 @@ public class ProductDao {
        return  products;
     }
 
-    Product getProduct(String productId){
+    public Product getProduct(String productId){
         Product product=null;
         try {
             Connection connection=DBUtiil.getconnection();
@@ -67,7 +67,7 @@ public class ProductDao {
         return product;
     }
 
-    List<Product> searchProductList(String keywords){
+    public List<Product> searchProductList(String keywords){
         List<Product> productList =new ArrayList<>();
         try {
             Connection connection=DBUtiil.getconnection();

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class MianFormServlet extends HttpServlet {
+public class MainFormServlet extends HttpServlet {
     private static final String MAIN_FORM = "/WEB-INF/jsp/catalog/main.jsp";
 
     @Override

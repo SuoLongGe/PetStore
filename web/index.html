@@ -2,17 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>主要界面</title>
-    <link rel="StyleSheet" href="css/petstore.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="css/index.css" type="text/css" media="screen"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #Content {
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            width: 100%;
+
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
+        a {
+            display: block;
+            background: #3498db;
+            color: #ffffff;
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            background: #2980b9;
+        }
+
+        p {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
 <div id="Content">
-    <h2>Welcome to Genius's PetStore </h2>
+    <h2>Welcome to Genius's PetStore</h2>
 
-    <p><a href="mainForm">Click here to enter the Store</a></p>
+    <a href="mainForm">Click here to enter the Store</a>
 
-    <p><sub>Copyright Central South University. </sub></p>
-
+    <p><sub>&copy; Central South University. All rights reserved.</sub></p>
 </div>
 </body>
 </html>

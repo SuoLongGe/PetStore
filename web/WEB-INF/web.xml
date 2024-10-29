@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>MainFormServlet</servlet-name>
-        <servlet-class>web.petstore.inerWeb.servlet.MianFormServlet</servlet-class>
+        <servlet-class>web.petstore.inerWeb.servlet.MainFormServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainFormServlet</servlet-name>

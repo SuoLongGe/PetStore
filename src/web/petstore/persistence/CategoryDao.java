@@ -42,6 +42,7 @@ public class CategoryDao {
         try {
             Connection connection=DBUtiil.getconnection();
             PreparedStatement preparedStatement = connection.prepareStatement(GET_CATEGORY);
+            preparedStatement.setString(1,categoryId);
             ResultSet resultSet=preparedStatement.executeQuery();
             if(resultSet.next())
             {

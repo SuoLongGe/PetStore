@@ -59,7 +59,7 @@ public class ItemDao {
         return result;
     }
 
-    List<Item> getItemListByProduct(String var1){
+   public List<Item> getItemListByProduct(String var1){
         List<Item> ItemList=new ArrayList<>();
         try {
             Connection connection=DBUtiil.getconnection();

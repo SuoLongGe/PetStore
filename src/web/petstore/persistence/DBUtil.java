@@ -60,7 +60,7 @@ public class DBUtil {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(getconnection());
-    }
+//    public static void main(String[] args) {
+//        System.out.println(getconnection());
+//    }
 }

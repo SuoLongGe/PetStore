@@ -1,0 +1,234 @@
+body {
+    background: #e1b8b8;
+    /*这段代码是一个常用的字体设置，可以确保在不同系统和设备上都有良好的显示效果。*/
+    font: 12px/1.5 tahoma, arial, Microsoft YaHei, sans-serif;
+}
+
+h1 {
+    font-size: 36px; /* 设置字体大小 */
+    text-align: center; /* 让文字居中 */
+}
+
+p{
+    padding: 0;
+    margin: 0;
+}
+
+.w{
+    width: 1080px;
+    height: 1200px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    padding: 50px 50px;
+}
+
+.user-content{
+    margin-left: 90px;
+    background: #fff;
+    position: relative;
+    width: 400px;
+    /*height: 350px;*/
+}
+
+.user-content .user-title{
+    /*10px表示上下内边距，0表示左右内边距*/
+    padding: 10px 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #666;
+    border-bottom: 1px solid #999 ;
+}
+
+.user-content .user-form{
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.user-content .user-form .user-form-error{
+    position: relative;
+    padding: 4px 4px 4px 40px;
+    color: red;
+    border: 1px solid white;
+    font-size: 14px;
+    margin-bottom: 10px;
+    width: 313px;
+}
+
+.user-content .user-form .user-form-error .error-icon{
+    position: absolute;
+    left:14px;
+    top:50%;
+    margin-top: -7px;
+
+}
+
+.user-content .user-form .user-form-item{
+    position: relative;
+    margin-top: 20px;
+
+}
+
+.user-form .user-form-item .user-form-label{
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    bottom: 1px;
+    width: 40px;
+    line-height: 36px;
+    background: #f3f3f3;
+    text-align: center;
+    border-right: 1px solid #bdbdbd;
+
+}
+
+.user-content .user-form .user-form-item .user-form-input{
+    padding: 10px 0 10px 50px;
+    width: 308px;
+    height: 40px;
+    line-height: 20px;
+    font-size: 18px;
+    border:  1px solid #bdbdbd;
+    outline: none;
+}
+
+.user-form-input2{
+    padding: 10px 0 10px 5px;
+    width: 308px;
+    height: 40px;
+    line-height: 20px;
+    font-size: 22px;
+    border:  1px solid #e0e9f0;
+    background-color: #e0e9f0;
+    outline: none;
+}
+
+.user-form .user-form-item .user-form-submit{
+    width: 95%;
+    font-size: 20px;
+    padding:  2px, 0;
+    font-weight: bold;
+    height: 40px;
+    background: #709bd3;
+    color: #fff;
+    cursor: pointer;/*鼠标放上去是一个指着的样式*/
+    border:  1px solid #709bd3;
+}
+
+.user-form .user-form-link{
+    text-align: right;
+    margin-right: 25px;
+}
+
+.user-form .user-form-link .link{
+    color: #999;
+    cursor: pointer;
+    padding: 10px;
+
+}
+
+.user-form .user-form-link .link:hover{
+    color: #215496;
+}
+
+.list-content{
+    position: relative;
+    margin: 0 auto;
+    width: 700px;
+    background: #fff;
+}
+
+.list-content .list-title{
+    padding: 10px 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #666;
+    border-bottom: 1px solid #999 ;
+}
+
+.list-content .list-table-content{
+    padding: 5px 20px 20px 20px;
+    position: relative;
+}
+
+.list-content .list-error{
+    padding: 10px 10px 5px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: blueviolet;
+    font-size: 14px;
+}
+
+.list-content .list-error .error-icon{
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+table{
+
+    margin: 5px auto;
+    border-spacing: 0px;
+    width: 700px;
+}
+
+th,td{
+    padding: 5px 15px 5px 15px;
+    border-spacing: 0px;
+    font-size: 14px;
+    text-align: left;
+    margin: 0px;
+    background-color: #e0e9f0;
+    border-top: 1px solid #f1f8fe;
+    border-bottom:1px solid #cbd2d8;
+    border-right: 1px solid #cbd2d8;
+}
+
+tr.head th{
+    color: #fff;
+    background-color: #90b4d6;
+    border-bottom: 2px solid #547ca0;
+    border-right:1px solid #749abe ;
+    border-top: 1px solid #90b4d6;
+    text-align: center;
+    text-shadow: -1px -1px 1px #666666;
+    letter-spacing: 2px;
+}
+
+td{
+    color:#547ca0;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #ffffff;
+}
+
+td.last .link{
+    text-decoration: none;
+    cursor: pointer;
+    background: #547ca0;
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 8px 4px 8px;
+    border-radius: 10px;
+    text-shadow: none;
+}
+
+.list-link{
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.list-link .link{
+    font-size: 18px;
+    font-weight: bold;
+    background: #547ca0;
+    color: #fff;
+    padding: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+}

@@ -1,6 +1,5 @@
 package web.petstore.persistence;
 
-import web.petstore.domain.Category;
 import web.petstore.domain.Product;
 
 import java.sql.*;
@@ -22,7 +21,7 @@ public class ProductDao {
    public List<Product> getProductListByCategory(String categoryId){
        List<Product> products =new ArrayList<>();
        try {
-           Connection connection=DBUtiil.getconnection();
+           Connection connection= DBUtil.getconnection();
            PreparedStatement preparedStatement =connection.prepareStatement(getProductListByCategoryString);
            preparedStatement.setString(1,categoryId);
            ResultSet resultSet=preparedStatement.executeQuery();
@@ -35,9 +34,9 @@ public class ProductDao {
                product.setCategoryId(resultSet.getString(4));
                products.add(product);
            }
-           DBUtiil.closeResultSet(resultSet);
-           DBUtiil.closePreparedStatement(preparedStatement);
-           DBUtiil.closeConnection(connection);
+           DBUtil.closeResultSet(resultSet);
+           DBUtil.closePreparedStatement(preparedStatement);
+           DBUtil.closeConnection(connection);
        } catch (SQLException e) {
            throw new RuntimeException(e);
        }
@@ -47,7 +46,7 @@ public class ProductDao {
     public Product getProduct(String productId){
         Product product=null;
         try {
-            Connection connection=DBUtiil.getconnection();
+            Connection connection= DBUtil.getconnection();
             PreparedStatement preparedStatement = connection.prepareStatement(getProductString);
             ResultSet resultSet=preparedStatement.executeQuery();
             if(resultSet.next())
@@ -58,9 +57,9 @@ public class ProductDao {
                 product.setDescription(resultSet.getString(3));
                 product.setCategoryId(resultSet.getString(4));
             }
-            DBUtiil.closeResultSet(resultSet);
-            DBUtiil.closePreparedStatement(preparedStatement);
-            DBUtiil.closeConnection(connection);
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closePreparedStatement(preparedStatement);
+            DBUtil.closeConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -70,7 +69,7 @@ public class ProductDao {
     public List<Product> searchProductList(String keywords){
         List<Product> productList =new ArrayList<>();
         try {
-            Connection connection=DBUtiil.getconnection();
+            Connection connection= DBUtil.getconnection();
             PreparedStatement preparedStatement =connection.prepareStatement(searchProductListString);
             preparedStatement.setString(1,keywords);
             ResultSet resultSet=preparedStatement.executeQuery();
@@ -83,9 +82,9 @@ public class ProductDao {
                 product.setCategoryId(resultSet.getString(4));
                 productList.add(product);
             }
-            DBUtiil.closeResultSet(resultSet);
-            DBUtiil.closePreparedStatement(preparedStatement);
-            DBUtiil.closeConnection(connection);
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closePreparedStatement(preparedStatement);
+            DBUtil.closeConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

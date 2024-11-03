@@ -16,7 +16,7 @@ public class CategoryDao {
     public List<Category> getCategoryList(){
         List<Category> categoryList =new ArrayList<>();
         try {
-            Connection connection=DBUtiil.getconnection();
+            Connection connection= DBUtil.getconnection();
             Statement statement =connection.createStatement();
             ResultSet resultSet=statement.executeQuery(GET_CATEGORY_LIST);
             while(resultSet.next())
@@ -27,9 +27,9 @@ public class CategoryDao {
                 category.setDescription(resultSet.getString("description"));
                 categoryList.add(category);
             }
-            DBUtiil.closeResultSet(resultSet);
-            DBUtiil.closeStatement(statement);
-            DBUtiil.closeConnection(connection);
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closeStatement(statement);
+            DBUtil.closeConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -40,7 +40,7 @@ public class CategoryDao {
     public Category getCategory(String categoryId){
         Category category=null;
         try {
-            Connection connection=DBUtiil.getconnection();
+            Connection connection= DBUtil.getconnection();
             PreparedStatement preparedStatement = connection.prepareStatement(GET_CATEGORY);
             preparedStatement.setString(1,categoryId);
             ResultSet resultSet=preparedStatement.executeQuery();
@@ -51,9 +51,9 @@ public class CategoryDao {
                 category.setName(resultSet.getString("NAME"));
                 category.setDescription(resultSet.getString("description"));
             }
-            DBUtiil.closeResultSet(resultSet);
-            DBUtiil.closePreparedStatement(preparedStatement);
-            DBUtiil.closeConnection(connection);
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closePreparedStatement(preparedStatement);
+            DBUtil.closeConnection(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

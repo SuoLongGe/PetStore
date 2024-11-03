@@ -30,6 +30,53 @@
         <servlet-name>ProductFormServlet</servlet-name>
         <url-pattern>/productForm</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>SignOnFormServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.SignOnFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignOnFormServlet</servlet-name>
+        <url-pattern>/signonForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewOrderFormServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.NewOrderFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewOrderFormServlet</servlet-name>
+        <url-pattern>/newOrderForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SignOnServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.SignOnServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignOnServlet</servlet-name>
+        <url-pattern>/signOn</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RegisterFormServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.RegisterFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterFormServlet</servlet-name>
+        <url-pattern>/registerForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>ItemFormServlet</servlet-name>
         <servlet-class>web.petstore.inerWeb.servlet.ItemFormServlet</servlet-class>
@@ -38,6 +85,7 @@
         <servlet-name>ItemFormServlet</servlet-name>
         <url-pattern>/itemForm</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>AddItemToCartServlet</servlet-name>
         <servlet-class>web.petstore.inerWeb.servlet.AddItemToCartServlet</servlet-class>
@@ -46,5 +94,6 @@
         <servlet-name>AddItemToCartServlet</servlet-name>
         <url-pattern>/addItemToCart</url-pattern>
     </servlet-mapping>
+
 
 </web-app>

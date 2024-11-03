@@ -20,7 +20,7 @@
                 <a href="productForm?productId=${product.productId}">${product.productId}</a>
                 </td>
                 <td>${product.name}</td>
-            </tr>]
+            </tr>
         </c:forEach>
     </table>
 

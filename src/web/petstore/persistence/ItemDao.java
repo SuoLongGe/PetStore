@@ -14,14 +14,14 @@ public class ItemDao {
     }
 
     public int getInventoryQuantity(String itemId){
-
+return 0;
     }
 
     public List<Item> getItemListByProduct(String productId){
-
+return  null;
     }
 
     public Item getItem(String itemId){
-
+return  null;
     }
 }

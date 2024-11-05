@@ -52,4 +52,5 @@ public class CatalogService {
     public boolean isItemInStock(String itemId) {
         return itemDao.getInventoryQuantity(itemId) > 0;
     }
+
 }

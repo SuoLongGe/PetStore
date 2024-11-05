@@ -16,7 +16,6 @@ import java.util.Map;
 public class ItemDao {
 
     private static final String GET_ITEMLIST_BY_PRODUCT = "SELECT I.ITEMID,LISTPRICE,UNITCOST,SUPPLIER AS supplierId,I.PRODUCTID AS productId,NAME AS productName,DESCN AS productDescription,CATEGORY AS categoryId,STATUS,ATTR1 AS attribute1,ATTR2 AS attribute2,ATTR3 AS attribute3,ATTR4 AS attribute4,ATTR5 AS attribute5 FROM ITEM I, PRODUCT P WHERE P.PRODUCTID = I.PRODUCTID AND I.PRODUCTID = ?";
-
     private static final String GET_ITEM = "select I.ITEMID,LISTPRICE,UNITCOST,SUPPLIER AS supplierId,I.PRODUCTID AS productId,NAME AS productName,DESCN AS productDescription,CATEGORY AS CategoryId,STATUS,ATTR1 AS attribute1,ATTR2 AS attribute2,ATTR3 AS attribute3,ATTR4 AS attribute4,ATTR5 AS attribute5,QTY AS quantity from ITEM I, INVENTORY V, PRODUCT P where P.PRODUCTID = I.PRODUCTID and I.ITEMID = V.ITEMID and I.ITEMID=?";
 
     private static final String GET_INVENTORY_QUANTITY = "SELECT QTY AS QUANTITY FROM INVENTORY WHERE ITEMID = ?";
@@ -64,10 +63,10 @@ public class ItemDao {
         List<Item> ItemList=new ArrayList<>();
         try {
             Connection connection=DBUtil.getconnection();
-            PreparedStatement pStatement = connection
-                    .prepareStatement(GET_ITEMLIST_BY_PRODUCT);
+
+            PreparedStatement pStatement= connection.prepareStatement(GET_ITEMLIST_BY_PRODUCT);
             pStatement.setString(1, var1);
-            ResultSet resultSet = pStatement.executeQuery();
+            ResultSet resultSet=pStatement.executeQuery();
             while (resultSet.next()) {
                 Item item = new Item();
                 item.setItemId(resultSet.getString(1));
@@ -93,6 +92,7 @@ public class ItemDao {
             DBUtil.closeConnection(connection);
             DBUtil.closeResultSet(resultSet);
             DBUtil.closePreparedStatement(pStatement);
+
 
         }
         catch (Exception e)

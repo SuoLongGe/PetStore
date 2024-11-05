@@ -16,13 +16,6 @@ public class AccountService {
         Account account = new Account();
         account.setUsername(username);
         account.setPassword(password);
-//        account.setCity("6");
-//        account.setCountry("6");
-//        account.setAddress1("6");
-//        account.setAddress2("6");account.setEmail("6");
-//        account.setBannerName("6");account.setBannerOption(true);account.setFirstName("6");account.setLastName("6");
-//        account.setFavouriteCategoryId("6");account.setLanguagePreference("6");
-//        account.setListOption(true);account.setZip("6");account.setState("6");
         Account account1=accountDao.getAccountByUsernameAndPassword(account);
         return account1;
     }
@@ -40,4 +33,7 @@ public class AccountService {
     }
 
 
+    public boolean editaccount(Account editaccount) {
+        return (accountDao.updateAccount(editaccount)&&accountDao.updateProfile(editaccount)&&accountDao.updateSignon(editaccount));
+    }
 }

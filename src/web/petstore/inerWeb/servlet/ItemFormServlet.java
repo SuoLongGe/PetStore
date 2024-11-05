@@ -26,6 +26,7 @@ import java.io.IOException;
         HttpSession session = req.getSession();
         session.setAttribute("product", product);
         session.setAttribute("item", item);
+        session.setAttribute("isReload",true);
         req.getRequestDispatcher(ITEM_FORM).forward(req, resp);
     }
 }

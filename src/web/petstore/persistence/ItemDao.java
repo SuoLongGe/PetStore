@@ -24,7 +24,7 @@ public class ItemDao {
 
     public void updateInventoryQuantity(Map<String, Object> param) {
         try {
-            Connection connection = DBUtiil.getconnection();
+            Connection connection = DBUtil.getconnection();
             PreparedStatement pStatement = connection
                     .prepareStatement(UPDATE_INVENTORY_QUANTITY);
             String itemId = param.keySet().iterator().next();
@@ -32,26 +32,27 @@ public class ItemDao {
             pStatement.setInt(1, increment.intValue());
             pStatement.setString(2, itemId);
             pStatement.executeUpdate();
-            DBUtiil.closePreparedStatement(pStatement);
-            DBUtiil.closeConnection(connection);
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+
     public int getInventoryQuantity(String itemId) {
         int result = -1;
         try {
-            Connection connection = DBUtiil.getconnection();
+            Connection connection = DBUtil.getconnection();
             PreparedStatement pStatement = connection.prepareStatement(GET_INVENTORY_QUANTITY);
             pStatement.setString(1, itemId);
             ResultSet resultSet = pStatement.executeQuery();
             if (resultSet.next()) {
                 result = resultSet.getInt(1);
             }
-            DBUtiil.closeResultSet(resultSet);
-            DBUtiil.closePreparedStatement(pStatement);
-            DBUtiil.closeConnection(connection);
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,7 +62,7 @@ public class ItemDao {
    public List<Item> getItemListByProduct(String var1){
         List<Item> ItemList=new ArrayList<>();
         try {
-            Connection connection=DBUtiil.getconnection();
+            Connection connection=DBUtil.getconnection();
             Statement statement= connection.createStatement();
             ResultSet resultSet=statement.executeQuery(GET_ITEMLIST_BY_PRODUCT);
             while (resultSet.next()) {
@@ -86,9 +87,9 @@ public class ItemDao {
                 ItemList.add(item);
 
             }
-            DBUtiil.closeConnection(connection);
-            DBUtiil.closeResultSet(resultSet);
-            DBUtiil.closeStatement(statement);
+            DBUtil.closeConnection(connection);
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closeStatement(statement);
 
         }
         catch (Exception e)
@@ -101,7 +102,7 @@ public class ItemDao {
     public Item getItem(String itemId) {
         Item item = null;
         try {
-            Connection connection = DBUtiil.getconnection();
+            Connection connection = DBUtil.getconnection();
             PreparedStatement pStatement = connection.prepareStatement(GET_ITEM);
             pStatement.setString(1, itemId);
             ResultSet resultSet = pStatement.executeQuery();
@@ -125,14 +126,15 @@ public class ItemDao {
                 item.setAttribute5(resultSet.getString(14));
                 item.setQuantity(resultSet.getInt(15));
             }
-            DBUtiil.closeResultSet(resultSet);
-            DBUtiil.closePreparedStatement(pStatement);
-            DBUtiil.closeConnection(connection);
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return item;
+
 
     }
 }

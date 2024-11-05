@@ -95,5 +95,40 @@
         <url-pattern>/addItemToCart</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>SignOutServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.SignOutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignOutServlet</servlet-name>
+        <url-pattern>/signOut</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditAccountFormServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.EditAccountFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditAccountFormServlet</servlet-name>
+        <url-pattern>/editAccountForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditAccountServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.EditAccountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditAccountServlet</servlet-name>
+        <url-pattern>/editAccount</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchProductFormServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.SearchProductFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchProductFormServlet</servlet-name>
+        <url-pattern>/searchProductForm</url-pattern>
+    </servlet-mapping>
 
 </web-app>

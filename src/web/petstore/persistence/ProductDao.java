@@ -48,6 +48,7 @@ public class ProductDao {
         try {
             Connection connection= DBUtil.getconnection();
             PreparedStatement preparedStatement = connection.prepareStatement(getProductString);
+            preparedStatement.setString(1,productId);
             ResultSet resultSet=preparedStatement.executeQuery();
             if(resultSet.next())
             {
@@ -71,7 +72,7 @@ public class ProductDao {
         try {
             Connection connection= DBUtil.getconnection();
             PreparedStatement preparedStatement =connection.prepareStatement(searchProductListString);
-            preparedStatement.setString(1,keywords);
+            preparedStatement.setString(1,"%"+keywords+"%");
             ResultSet resultSet=preparedStatement.executeQuery();
             while(resultSet.next())
             {

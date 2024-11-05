@@ -41,8 +41,15 @@ public class AccountDao {
             "BANNERDATA.BANNERNAME " +
             "FROM ACCOUNT, PROFILE, SIGNON, BANNERDATA " +"WHERE ACCOUNT.USERID = ?";
 
+    private static final String UPDATE_ACCOUNT="UPDATE ACCOUNT SET " +
+            "EMAIL = ?,FIRSTNAME = ?,LASTNAME = ?,STATUS = ?," +
+            "ADDR1 = ?, ADDR2 = ?, CITY = ?, STATE = ?," +
+            "ZIP = ?, COUNTRY = ?, PHONE = ? WHERE USERID = ?";
 
+    private static final String UPDATE_PROFILE="UPDATE PROFILE SET LANGPREF = ?, FAVCATEGORY = ?,MYLISTOPT = ?," +
+            "BANNEROPT = ? WHERE USERID = ?";
 
+    private static final String UPDATE_SIGNON="UPDATE SIGNON SET PASSWORD = ? WHERE USERNAME = ?";
 
     public Account getAccountByUsernameAndPassword(Account account){
         Account accountResult = null;
@@ -172,16 +179,94 @@ public class AccountDao {
         return  result;
     }
 
-    public void updateAccount(Account account){
+    public boolean updateAccount(Account editaccount){
+        boolean result =false;
+        Connection connection = DBUtil.getconnection();
 
+        try {
+            //2.获取执行对象
+            PreparedStatement preparedStatement= connection.prepareStatement(UPDATE_ACCOUNT);
+            //3.将执行对象补充完整
+            preparedStatement.setString(1,editaccount.getEmail());
+            preparedStatement.setString(2,editaccount.getFirstName());
+            preparedStatement.setString(3,editaccount.getLastName());
+            preparedStatement.setString(4,editaccount.getStatus());
+            preparedStatement.setString(5,editaccount.getAddress1());
+            preparedStatement.setString(6,editaccount.getAddress2());
+            preparedStatement.setString(7,editaccount.getCity());
+            preparedStatement.setString(8,editaccount.getState());
+            preparedStatement.setString(9,editaccount.getZip());
+            preparedStatement.setString(10,editaccount.getCountry());
+            preparedStatement.setString(11,editaccount.getPhone());
+            preparedStatement.setString(12,editaccount.getUsername());
+            int rows= preparedStatement.executeUpdate();
+            if(rows==1)
+            {
+                result=true;
+            }
+            DBUtil.closeConnection(connection);
+            DBUtil.closePreparedStatement(preparedStatement);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return  result;
     }
 
-    public void updateProfile(Account account){
+    public boolean updateProfile(Account editaccount){
+        int LO,BO;
+        if(editaccount.isListOption())LO=1;
+        else LO=0;
+        if(editaccount.isBannerOption())BO=1;
+        else BO=0;
+        boolean result =false;
+        Connection connection = DBUtil.getconnection();
+        try {
+            //2.获取执行对象
+            PreparedStatement preparedStatement= connection.prepareStatement(UPDATE_PROFILE);
+            //3.将执行对象补充完整
+            preparedStatement.setString(1,editaccount.getLanguagePreference());
+            preparedStatement.setString(2,editaccount.getFavouriteCategoryId());
+            preparedStatement.setInt(3,LO);
+            preparedStatement.setInt(4,BO);
+            preparedStatement.setString(5,editaccount.getUsername());
 
+            int rows= preparedStatement.executeUpdate();
+            if(rows==1)
+            {
+                result=true;
+            }
+            DBUtil.closeConnection(connection);
+            DBUtil.closePreparedStatement(preparedStatement);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return  result;
     }
 
-    public void updateSignon(Account account){
+    public boolean updateSignon(Account editaccount){
+        boolean result =false;
+        Connection connection = DBUtil.getconnection();
+        try {
 
+            //2.获取执行对象
+            PreparedStatement preparedStatement= connection.prepareStatement(UPDATE_SIGNON);
+            //3.将执行对象补充完整
+            preparedStatement.setString(1,editaccount.getPassword());
+            preparedStatement.setString(2,editaccount.getUsername());
+            int rows= preparedStatement.executeUpdate();
+            if(rows==1)
+            {
+                result=true;
+            }
+            DBUtil.closeConnection(connection);
+            DBUtil.closePreparedStatement(preparedStatement);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return  result;
     }
 
     private Account resultSetToAccount(ResultSet resultSet) throws Exception{

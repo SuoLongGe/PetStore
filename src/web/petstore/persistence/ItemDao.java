@@ -64,8 +64,10 @@ public class ItemDao {
         List<Item> ItemList=new ArrayList<>();
         try {
             Connection connection=DBUtil.getconnection();
-            Statement statement= connection.createStatement();
-            ResultSet resultSet=statement.executeQuery(GET_ITEMLIST_BY_PRODUCT);
+            PreparedStatement pStatement = connection
+                    .prepareStatement(GET_ITEMLIST_BY_PRODUCT);
+            pStatement.setString(1, var1);
+            ResultSet resultSet = pStatement.executeQuery();
             while (resultSet.next()) {
                 Item item = new Item();
                 item.setItemId(resultSet.getString(1));
@@ -90,7 +92,7 @@ public class ItemDao {
             }
             DBUtil.closeConnection(connection);
             DBUtil.closeResultSet(resultSet);
-            DBUtil.closeStatement(statement);
+            DBUtil.closePreparedStatement(pStatement);
 
         }
         catch (Exception e)

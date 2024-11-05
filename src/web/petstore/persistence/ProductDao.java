@@ -47,22 +47,21 @@ public class ProductDao {
         Product product = null;
         try {
 
-            Connection connection = DBUtil.getconnection();
-            PreparedStatement pStatement = connection
-                    .prepareStatement(getProductString);
-            pStatement.setString(1, productId);
-            ResultSet resultSet = pStatement.executeQuery();
-            if (resultSet.next()) {
-                product = new Product();
+            Connection connection= DBUtil.getconnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(getProductString);
+            preparedStatement.setString(1,productId);
+            ResultSet resultSet=preparedStatement.executeQuery();
+            if(resultSet.next())
+            {
+                product =new Product();
 
                 product.setProductId(resultSet.getString(1));
                 product.setName(resultSet.getString(2));
                 product.setDescription(resultSet.getString(3));
                 product.setCategoryId(resultSet.getString(4));
             }
-
             DBUtil.closeResultSet(resultSet);
-            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closePreparedStatement(preparedStatement);
             DBUtil.closeConnection(connection);
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,13 +75,13 @@ public class ProductDao {
 
         try {
 
-            Connection connection = DBUtil.getconnection();
-            PreparedStatement pStatement = connection
-                    .prepareStatement(searchProductListString);
-            pStatement.setString(1, keywords);
-            ResultSet resultSet = pStatement.executeQuery();
-            while (resultSet.next()) {
-                Product product = new Product();
+            Connection connection= DBUtil.getconnection();
+            PreparedStatement preparedStatement =connection.prepareStatement(searchProductListString);
+            preparedStatement.setString(1,"%"+keywords+"%");
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while(resultSet.next())
+            {
+                Product product =new Product();
 
                 product.setProductId(resultSet.getString(1));
                 product.setName(resultSet.getString(2));
@@ -92,7 +91,7 @@ public class ProductDao {
             }
 
             DBUtil.closeResultSet(resultSet);
-            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closePreparedStatement(preparedStatement);
             DBUtil.closeConnection(connection);
         } catch (Exception e) {
             e.printStackTrace();

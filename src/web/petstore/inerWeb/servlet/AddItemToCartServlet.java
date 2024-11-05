@@ -1,3 +1,4 @@
+
 package web.petstore.inerWeb.servlet;
 
 import web.petstore.domain.Account;
@@ -5,6 +6,7 @@ import web.petstore.domain.Cart;
 import web.petstore.domain.Item;
 import web.petstore.persistence.CartDao;
 import web.petstore.service.CatalogService;
+import web.petstore.service.LogService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class AddItemToCartServlet extends HttpServlet {
+
 
     private static final String CART_FORM = "/WEB-INF/jsp/cart/cart.jsp";
     private CartDao cartDao = new CartDao(); // 初始化 CartDao
@@ -59,6 +62,8 @@ public class AddItemToCartServlet extends HttpServlet {
             e.printStackTrace();
             req.setAttribute("errorMessage", "添加商品到购物车失败");
             req.getRequestDispatcher("/WEB-INF/jsp/cart/error.jsp").forward(req, resp);
+
         }
     }
+
 }

@@ -1,48 +1,80 @@
 package web.petstore.inerWeb.servlet;
 
+import web.petstore.domain.Account;
 import web.petstore.domain.Cart;
-import web.petstore.domain.CartItem;
+import web.petstore.persistence.CartDao;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
-import java.util.Iterator;
+import java.sql.SQLException;
+import java.util.Enumeration;
 
-public class UpdateCartServlet  extends HttpServlet {
+public class UpdateCartServlet extends HttpServlet {
+
     private static final String CART_FORM = "/WEB-INF/jsp/cart/cart.jsp";
+    private CartDao cartDao = new CartDao(); // 初始化 CartDao
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         HttpSession session = req.getSession();
-        Cart cart = (Cart) session.getAttribute("cart");
-        if (cart == null) {
-            req.setAttribute("errorMessage", "购物车为空，无法进行更新！");
-            req.getRequestDispatcher("/WEB-INF/jsp/cart/emptyCart.jsp").forward(req, resp);  // 你可以根据需要跳转到空购物车的页面
+
+        // 获取登录账号信息
+        Account loginAccount = (Account) session.getAttribute("loginAccount");
+        if (loginAccount == null) {
+            // 如果用户未登录，重定向到登录页面
+            resp.sendRedirect(req.getContextPath() + "/signOn");
             return;
         }
-        Iterator<CartItem> cartItems = cart.getAllCartItems();
 
+        String userId = loginAccount.getUsername(); // 假设用户名用作唯一标识符
 
-        while (cartItems.hasNext()) {
-            CartItem cartItem = (CartItem) cartItems.next();
-            String itemId = cartItem.getItem().getItemId();
-            try {
-                String quantityString = req.getParameter(itemId);
-                int quantity = Integer.parseInt(quantityString);
+        try {
+            // 遍历请求参数，查找以 "quantity_" 开头的数量输入项
+            Enumeration<String> parameterNames = req.getParameterNames();
+            while (parameterNames.hasMoreElements()) {
+                String paramName = parameterNames.nextElement();
+                if (paramName.startsWith("quantity_")) {
+                    String itemId = paramName.substring("quantity_".length()); // 提取 itemId
+                    String quantityStr = req.getParameter(paramName);
 
-                cart.setQuantityByItemId(itemId, quantity);
-                if (quantity < 1) {
-                    cartItems.remove();
+                    if (quantityStr == null || quantityStr.isEmpty()) {
+                        req.setAttribute("errorMessage", "商品数量无效");
+                        req.getRequestDispatcher(CART_FORM).forward(req, resp);
+                        return;
+                    }
+
+                    int quantity = Integer.parseInt(quantityStr);
+                    if (quantity < 0) {
+                        req.setAttribute("errorMessage", "商品数量不能为负");
+                        req.getRequestDispatcher(CART_FORM).forward(req, resp);
+                        return;
+                    }
+
+                    // 更新购物车中的商品数量
+                    if (quantity > 0) {
+                        cartDao.updateItemQuantity(userId, itemId, quantity);
+                    } else {
+                        cartDao.removeItemFromCart(userId, itemId); // 如果数量为0，则删除商品
+                    }
                 }
-            } catch (Exception e) {
-
             }
-        }
 
-        req.getRequestDispatcher(CART_FORM).forward(req,resp);
+            // 获取当前用户的购物车内容并更新 session
+            Cart cart = new Cart();
+            cart.setCartItems(cartDao.getCartItems(cartDao.getCartIdByUserId(userId))); // 从数据库中获取购物车商品
+            session.setAttribute("cart", cart); // 更新session中的购物车对象
+
+            // 重定向到购物车页面，显示更新后的购物车
+            resp.sendRedirect(req.getContextPath() + "/cartForm");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            req.setAttribute("errorMessage", "更新购物车失败，请重试");
+            req.getRequestDispatcher("/WEB-INF/jsp/cart/error.jsp").forward(req, resp);
+        } catch (NumberFormatException e) {
+            req.setAttribute("errorMessage", "商品数量无效，请输入有效的数字");
+            req.getRequestDispatcher(CART_FORM).forward(req, resp);
+        }
     }
 }

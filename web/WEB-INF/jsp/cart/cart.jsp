@@ -1,18 +1,15 @@
+<%@ include file="../common/top.jsp" %>
 
-
-<%@ include file="../common/top.jsp"%>
-
-<div id="BackLink"><stripes:link
-        beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean">
-    Return to Main Menu</stripes:link></div>
+<div id="BackLink">
+    <stripes:link beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean">
+        Return to Main Menu
+    </stripes:link>
+</div>
 
 <div id="Catalog">
-
     <div id="Cart">
-
         <h2>Shopping Cart</h2>
-
-        <form action="updateCart" method="post">
+        <form action="<%= request.getContextPath() %>/updateCart" method="post">
             <table>
                 <tr>
                     <th><b>Item ID</b></th>
@@ -31,47 +28,50 @@
                     </tr>
                 </c:if>
 
-                <c:forEach var="cartItem" items="${sessionScope.cart.cartItems}">
+                <c:forEach var="cartItem" items="${sessionScope.cart.cartItemList}">
                     <tr>
                         <td>
                             <a href="itemForm?itemId=${cartItem.item.itemId}">${cartItem.item.itemId}</a>
                         </td>
-                        <td>${cartItem.item.product.productId}</td>
-                        <td>${cartItem.item.attribute1} ${cartItem.item.attribute2}
+                        <td>${cartItem.item.productId}</td>
+                        <td>
+                                ${cartItem.item.attribute1} ${cartItem.item.attribute2}
                                 ${cartItem.item.attribute3} ${cartItem.item.attribute4}
-                                ${cartItem.item.attribute5} ${cartItem.item.product.name}</td>
+                                ${cartItem.item.attribute5} ${cartItem.item.product.name}
+                        </td>
                         <td>${cartItem.inStock}</td>
                         <td>
-                            <input type="text" name="${cartItem.item.itemId}" value="${cartItem.quantity}">
+                            <input type="number" name="quantity_${cartItem.item.itemId}" value="${cartItem.quantity}">
+                            <input type="hidden" name="itemId" value="${cartItem.item.itemId}">
                         </td>
-                        <td><fmt:formatNumber value="${cartItem.item.listPrice}"
-                                              pattern="$#,##0.00" /></td>
-                        <td><fmt:formatNumber value="${cartItem.total}"
-                                              pattern="$#,##0.00" /></td>
+                        <td>
+                            <fmt:formatNumber value="${cartItem.item.listPrice}" pattern="$#,##0.00" />
+                        </td>
+                        <td>
+                            <fmt:formatNumber value="${cartItem.total}" pattern="$#,##0.00" />
+                        </td>
                         <td>
                             <a href="removeCartItem?workingItemId=${cartItem.item.itemId}" class="Button">Remove</a>
                         </td>
                     </tr>
                 </c:forEach>
+
                 <tr>
                     <td colspan="7">
-                        Sub Total: <fmt:formatNumber value="${sessionScope.cart.subTotal}" pattern="$#,##0.00" />
-                        <input type="submit" value="Update Cart">
+                        Sub Total:
+                        <fmt:formatNumber value="${sessionScope.cart.subTotal}" pattern="$#,##0.00" />
                     </td>
                     <td>&nbsp;</td>
                 </tr>
             </table>
+            <input type="submit" value="Update Cart"> <!-- 更新购物车按钮 -->
         </form>
-
-        <c:if test="${sessionScope.cart.numberOfItems > 0}">
-            <a href="newOrderForm" class="Button">Proceed to Checkout</a>
-        </c:if>
     </div>
 
     <div id="MyList">
         <c:if test="${sessionScope.loginAccount != null}">
             <c:if test="${!empty sessionScope.loginAccount.listOption}">
-                <%@ include file="includeMyList.jsp"%>
+                <%@ include file="includeMyList.jsp" %>
             </c:if>
         </c:if>
     </div>
@@ -79,5 +79,4 @@
     <div id="Separator">&nbsp;</div>
 </div>
 
-<%@ include file="../common/bottom.jsp"%>
-
+<%@ include file="../common/bottom.jsp" %>

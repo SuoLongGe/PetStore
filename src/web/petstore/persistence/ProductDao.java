@@ -20,7 +20,7 @@ public class ProductDao {
     public List<Product> getProductListByCategory(String categoryId) {
         List<Product> products = new ArrayList<Product>();
         try {
-            Connection connection = DBUtiil.getconnection();
+            Connection connection = DBUtil.getconnection();
             PreparedStatement pStatement = connection
                     .prepareStatement(getProductListByCategoryString);
             pStatement.setString(1, categoryId);
@@ -33,9 +33,9 @@ public class ProductDao {
                 product.setCategoryId(resultSet.getString(4));
                 products.add(product);
             }
-            DBUtiil.closeResultSet(resultSet);
-            DBUtiil.closePreparedStatement(pStatement);
-            DBUtiil.closeConnection(connection);
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ public class ProductDao {
         Product product = null;
         try {
 
-            Connection connection = DBUtiil.getconnection();
+            Connection connection = DBUtil.getconnection();
             PreparedStatement pStatement = connection
                     .prepareStatement(getProductString);
             pStatement.setString(1, productId);
@@ -61,9 +61,9 @@ public class ProductDao {
                 product.setCategoryId(resultSet.getString(4));
             }
 
-            DBUtiil.closeResultSet(resultSet);
-            DBUtiil.closePreparedStatement(pStatement);
-            DBUtiil.closeConnection(connection);
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -76,7 +76,7 @@ public class ProductDao {
 
         try {
 
-            Connection connection = DBUtiil.getconnection();
+            Connection connection = DBUtil.getconnection();
             PreparedStatement pStatement = connection
                     .prepareStatement(searchProductListString);
             pStatement.setString(1, keywords);
@@ -91,9 +91,9 @@ public class ProductDao {
                 productList.add(product);
             }
 
-            DBUtiil.closeResultSet(resultSet);
-            DBUtiil.closePreparedStatement(pStatement);
-            DBUtiil.closeConnection(connection);
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
         } catch (Exception e) {
             e.printStackTrace();
 

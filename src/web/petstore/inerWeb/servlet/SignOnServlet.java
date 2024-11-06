@@ -32,7 +32,8 @@ public class SignOnServlet extends HttpServlet {
         if(!validate()){
             req.setAttribute("signOnMsg", this.msg);
             req.getRequestDispatcher(SIGN_ON_FORM).forward(req,resp);
-        }else{
+        }
+        else{
             AccountService accountService = new AccountService();
             Account loginAccount = accountService.getAccount(username, password);
             if(loginAccount == null){
@@ -51,7 +52,8 @@ public class SignOnServlet extends HttpServlet {
                         session.setAttribute("myList", myList);
                     }
                     resp.sendRedirect("mainForm");
-                }else {
+                }
+                else {
                     this.msg = "验证码错误";
                     req.setAttribute("signOnMsg", this.msg);
                     req.getRequestDispatcher(SIGN_ON_FORM).forward(req,resp);

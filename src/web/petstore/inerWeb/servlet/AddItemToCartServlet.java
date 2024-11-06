@@ -48,6 +48,7 @@ public class AddItemToCartServlet extends HttpServlet {
                     Item item = catalogService.getItem(workingItemId);
                     cart.addItem(item, isInStock);
                 }
+                session.removeAttribute("isReload");
             }
             // 将购物车信息存入会话中
             session.setAttribute("cart", cart);

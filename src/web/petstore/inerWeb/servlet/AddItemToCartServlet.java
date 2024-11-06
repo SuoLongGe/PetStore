@@ -43,7 +43,6 @@ public class AddItemToCartServlet extends HttpServlet {
             }
             boolean isInStock = catalogService.isItemInStock(workingItemId);
 
-
             // 添加商品到购物车
             int cartId = cartDao.getCartIdByUserId(userId); // 获取购物车 ID
             if (cartDao.itemExistsInCart(cartId, item.getItemId())) {
@@ -52,11 +51,17 @@ public class AddItemToCartServlet extends HttpServlet {
                 cartDao.addItemToCart(userId, item.getItemId(), 1, isInStock); // 不存在则插入新商品
 
             }
+// 记录操作日志的相关信息
+            LogService logService = new LogService();
+            Account loginAccount = (Account) session.getAttribute("loginAccount");
+            userId = loginAccount.getUsername();
+            String activityType = "添加到购物车";
+            String activityDetail = "用户将商品添加到购物车";
 
             // 获取当前用户的购物车内容
             Cart cart = new Cart();
             cart.setCartItems(cartDao.getCartItems(cartId)); // 设置购物车的商品
-
+            logService.logUserActivity(userId, activityType, activityDetail,workingItemId,null);
             session.setAttribute("cart", cart); // 将购物车对象放入session
             req.getRequestDispatcher(CART_FORM).forward(req, resp); // 转发到购物车页面
 

@@ -22,7 +22,7 @@ public class CaptchaUtil {
         String captcha = generateRandomString(4);
 
         // 在图像上绘制验证码
-        g.setFont(new Font("Arial", Font.BOLD, 40));
+        g.setFont(new Font("Serif", Font.BOLD, 40));
         g.setColor(Color.BLACK);
         g.drawString(captcha, 10, 40);
 

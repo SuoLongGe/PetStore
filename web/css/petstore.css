@@ -25,11 +25,11 @@ h1 {
 }
 
 h2 {
-    margin: 2ex 0ex 1ex 0ex;
+    margin: 2ex 0ex 5ex 1ex;
     padding: 0ex;
-
+    font-size: 50px;
     line-height: 2ex;
-    font-weight: 700;
+    font-weight: 900;
     color: #444;
 }
 
@@ -81,8 +81,8 @@ th {
 }
 
 a, a:visited, a:link {
-    color: #039;
-
+    color: #0c627c;
+    font-size: 30px;
     text-decoration: none;
     font-family: helvetica, tahoma, arial, verdana, sans-serif;
 }

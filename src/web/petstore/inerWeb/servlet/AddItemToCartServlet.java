@@ -43,12 +43,14 @@ public class AddItemToCartServlet extends HttpServlet {
             }
             boolean isInStock = catalogService.isItemInStock(workingItemId);
 
+
             // 添加商品到购物车
             int cartId = cartDao.getCartIdByUserId(userId); // 获取购物车 ID
             if (cartDao.itemExistsInCart(cartId, item.getItemId())) {
                 cartDao.updateItemQuantity(userId, item.getItemId(), 1); // 如果存在，则更新数量
             } else {
                 cartDao.addItemToCart(userId, item.getItemId(), 1, isInStock); // 不存在则插入新商品
+
             }
 
             // 获取当前用户的购物车内容

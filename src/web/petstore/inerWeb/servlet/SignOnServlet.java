@@ -18,8 +18,13 @@ public class SignOnServlet extends HttpServlet {
     private static final String SIGN_ON_FORM = "/WEB-INF/jsp/account/signon.jsp";
     private String username;
     private String password;
-
     private String msg;
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        req.getRequestDispatcher(SIGN_ON_FORM).forward(req, resp);
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,20 +34,24 @@ public class SignOnServlet extends HttpServlet {
 
         this.username = req.getParameter("username");
         this.password = req.getParameter("password");
-        if(!validate()){
+
+        if (!validate()) {
             req.setAttribute("signOnMsg", this.msg);
+
             req.getRequestDispatcher(SIGN_ON_FORM).forward(req,resp);
         }
         else{
+
             AccountService accountService = new AccountService();
             Account loginAccount = accountService.getAccount(username, password);
-            if(loginAccount == null){
+
+            if (loginAccount == null) {
                 this.msg = "用户名或密码错误";
                 req.setAttribute("signOnMsg", this.msg);
-                req.getRequestDispatcher(SIGN_ON_FORM).forward(req,resp);
-            }else {
+                req.getRequestDispatcher(SIGN_ON_FORM).forward(req, resp);
+            } else {
                 if (sessionCaptcha != null && sessionCaptcha.equals(userInputCaptcha)) {
-                    loginAccount.setPassword(null);
+                    loginAccount.setPassword(null); // 登录成功后不再存储密码
                     HttpSession session = req.getSession();
                     session.setAttribute("loginAccount", loginAccount);
 
@@ -51,25 +60,24 @@ public class SignOnServlet extends HttpServlet {
                         List<Product> myList = catalogService.getProductListByCategory(loginAccount.getFavouriteCategoryId());
                         session.setAttribute("myList", myList);
                     }
-                    resp.sendRedirect("mainForm");
-                }
-                else {
+
+                    resp.sendRedirect("mainForm"); // 登录成功后重定向到主页
+                } else {
+
                     this.msg = "验证码错误";
                     req.setAttribute("signOnMsg", this.msg);
-                    req.getRequestDispatcher(SIGN_ON_FORM).forward(req,resp);
+                    req.getRequestDispatcher(SIGN_ON_FORM).forward(req, resp);
                 }
             }
         }
-
-
     }
 
-    private boolean validate(){
-        if(this.username == null || this.username.equals("")){
+    private boolean validate() {
+        if (this.username == null || this.username.equals("")) {
             this.msg = "用户名不能为空";
             return false;
         }
-        if(this.password == null || this.password.equals("")){
+        if (this.password == null || this.password.equals("")) {
             this.msg = "密码不能为空";
             return false;
         }

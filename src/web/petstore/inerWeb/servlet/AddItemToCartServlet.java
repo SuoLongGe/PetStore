@@ -4,64 +4,66 @@ package web.petstore.inerWeb.servlet;
 import web.petstore.domain.Account;
 import web.petstore.domain.Cart;
 import web.petstore.domain.Item;
+import web.petstore.persistence.CartDao;
 import web.petstore.service.CatalogService;
 import web.petstore.service.LogService;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class AddItemToCartServlet extends HttpServlet {
+
+
     private static final String CART_FORM = "/WEB-INF/jsp/cart/cart.jsp";
+    private CartDao cartDao = new CartDao(); // 初始化 CartDao
+    private CatalogService catalogService = new CatalogService(); // 用于获取商品信息
 
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 获取商品ID
-        String workingItemId = req.getParameter("workingItemId");
-
-        // 获取会话和购物车对象
+        String workingItemId = req.getParameter("workingItemId"); // 获取当前操作的商品ID
         HttpSession session = req.getSession();
+        String userId = null;
 
         if (session.getAttribute("loginAccount") != null) {
-            Cart cart = (Cart) session.getAttribute("cart");
-
-            if (cart == null) {
-                cart = new Cart();
-            }
-            // 记录操作日志的相关信息
-            LogService logService = new LogService();
-            Account loginAccount = (Account) session.getAttribute("loginAccount");
-            String userId = loginAccount.getUsername();
-            String activityType = "添加到购物车";
-            String activityDetail = "用户将商品添加到购物车";
-
-            if (session.getAttribute("isReload") != null) {
-                // 检查购物车中是否已经包含该商品
-                if (cart.containsItemId(workingItemId)) {
-                    cart.incrementQuantityByItemId(workingItemId);
-                    activityDetail += "，数量增加";
-                } else {
-                    CatalogService catalogService = new CatalogService();
-                    boolean isInStock = catalogService.isItemInStock(workingItemId);
-                    Item item = catalogService.getItem(workingItemId);
-                    cart.addItem(item, isInStock);
-                }
-                session.removeAttribute("isReload");
-            }
-            // 将购物车信息存入会话中
-            session.setAttribute("cart", cart);
-            String order_id = null;
-            // 记录日志信息
-            logService.logUserActivity(userId, activityType, activityDetail, workingItemId, order_id);
-
-            // 转发请求到购物车页面
-            req.getRequestDispatcher(CART_FORM).forward(req, resp);
+            userId = ((Account) session.getAttribute("loginAccount")).getUsername(); // 假设 Account 类中有 getUserId 方法
+        } else {
+            resp.sendRedirect(req.getContextPath() + "/signOn");
+            return;
         }
-        else
-        {
-            resp.sendRedirect("signonForm");
+
+        try {
+            // 获取商品信息
+            Item item = catalogService.getItem(workingItemId);
+            if (item == null) {
+                req.setAttribute("errorMessage", "无法找到该商品");
+                req.getRequestDispatcher(CART_FORM).forward(req, resp);
+                return;
+            }
+            boolean isInStock = catalogService.isItemInStock(workingItemId);
+
+
+            // 添加商品到购物车
+            int cartId = cartDao.getCartIdByUserId(userId); // 获取购物车 ID
+            if (cartDao.itemExistsInCart(cartId, item.getItemId())) {
+                cartDao.updateItemQuantity(userId, item.getItemId(), 1); // 如果存在，则更新数量
+            } else {
+                cartDao.addItemToCart(userId, item.getItemId(), 1, isInStock); // 不存在则插入新商品
+
+            }
+
+            // 获取当前用户的购物车内容
+            Cart cart = new Cart();
+            cart.setCartItems(cartDao.getCartItems(cartId)); // 设置购物车的商品
+
+            session.setAttribute("cart", cart); // 将购物车对象放入session
+            req.getRequestDispatcher(CART_FORM).forward(req, resp); // 转发到购物车页面
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            req.setAttribute("errorMessage", "添加商品到购物车失败");
+            req.getRequestDispatcher("/WEB-INF/jsp/cart/error.jsp").forward(req, resp);
 
         }
     }

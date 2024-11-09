@@ -11,13 +11,14 @@ public class LineItemDao {
 
     // SQL 查询语句
     private static final String INSERT_LINE_ITEM = "INSERT INTO LINEITEM (ORDERID, LINENUM, ITEMID, QUANTITY, UNITPRICE) VALUES (?, ?, ?, ?, ?)";
+
     private static final String GET_LINE_ITEMS_BY_ORDER_ID = "SELECT ORDERID, LINENUM, ITEMID, QUANTITY, UNITPRICE FROM LINEITEM WHERE ORDERID = ?";
 
     // 插入订单条目
-    public void insertLineItem(LineItem lineItem) throws SQLException {
+    public boolean insertLineItem(LineItem lineItem) throws SQLException {
+        boolean result =false;
         Connection conn = null;
         PreparedStatement ps = null;
-
         try {
             conn = DBUtil.getconnection();
             ps = conn.prepareStatement(INSERT_LINE_ITEM);
@@ -26,11 +27,16 @@ public class LineItemDao {
             ps.setString(3, lineItem.getItemId());
             ps.setInt(4, lineItem.getQuantity());
             ps.setBigDecimal(5, lineItem.getUnitPrice());
-            ps.executeUpdate();
+            int rows = ps.executeUpdate();
+            if(rows==1)
+            {
+                result=true;
+            }
         } finally {
             DBUtil.closePreparedStatement(ps);
             DBUtil.closeConnection(conn);
         }
+        return  result;
     }
 
     // 获取订单中的所有条目
@@ -45,7 +51,6 @@ public class LineItemDao {
             ps = conn.prepareStatement(GET_LINE_ITEMS_BY_ORDER_ID);
             ps.setInt(1, orderId);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 LineItem lineItem = new LineItem();
                 lineItem.setOrderId(rs.getInt("ORDERID"));

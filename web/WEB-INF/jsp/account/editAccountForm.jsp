@@ -122,6 +122,7 @@
                 <input type="submit" value="保存用户信息" class="user-form-submit">
             </div>
 
+            <a href="myOrder" class="Button">My Orders</a>
             <div class="user-form-link">
                 <a href="signonForm" class="link">返回登录>></a>
             </div>

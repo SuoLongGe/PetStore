@@ -8,10 +8,27 @@ import java.util.List;
 
 public class OrderDao {
 
+    int count=0;
     // SQL 查询语句
-    private static final String GET_ORDER_BY_ID = "SELECT BILLADDR1 AS billAddress1, BILLADDR2 AS billAddress2, BILLCITY, BILLCOUNTRY, BILLSTATE, BILLTOFIRSTNAME, BILLTOLASTNAME, BILLZIP, SHIPADDR1 AS shipAddress1, SHIPADDR2 AS shipAddress2, SHIPCITY, SHIPCOUNTRY, SHIPSTATE, SHIPTOFIRSTNAME, SHIPTOLASTNAME, SHIPZIP, CARDTYPE, COURIER, CREDITCARD, EXPRDATE AS expiryDate, LOCALE, ORDERDATE, ORDERS.ORDERID, TOTALPRICE, USERID AS username, STATUS FROM ORDERS, ORDERSTATUS WHERE ORDERS.ORDERID = ? AND ORDERS.ORDERID = ORDERSTATUS.ORDERID";
+    private static final String GET_ORDER_BY_ID = "SELECT BILLADDR1 AS billAddress1, " +
+            "BILLADDR2 AS billAddress2, BILLCITY, BILLCOUNTRY, BILLSTATE, BILLTOFIRSTNAME, " +
+            "BILLTOLASTNAME, BILLZIP, SHIPADDR1 AS shipAddress1, SHIPADDR2 AS shipAddress2, " +
+            "SHIPCITY, SHIPCOUNTRY, SHIPSTATE, SHIPTOFIRSTNAME, SHIPTOLASTNAME, SHIPZIP, CARDTYPE, " +
+            "COURIER, CREDITCARD, EXPRDATE AS expiryDate, LOCALE, ORDERDATE, ORDERS.ORDERID, TOTALPRICE, " +
+            "USERID AS username, STATUS FROM ORDERS, ORDERSTATUS WHERE ORDERS.ORDERID = ? AND " +
+            "ORDERS.ORDERID = ORDERSTATUS.ORDERID";
+
     private static final String GET_ORDERS_BY_USERNAME = "SELECT BILLADDR1 AS billAddress1, BILLADDR2 AS billAddress2, BILLCITY, BILLCOUNTRY, BILLSTATE, BILLTOFIRSTNAME, BILLTOLASTNAME, BILLZIP, SHIPADDR1 AS shipAddress1, SHIPADDR2 AS shipAddress2, SHIPCITY, SHIPCOUNTRY, SHIPSTATE, SHIPTOFIRSTNAME, SHIPTOLASTNAME, SHIPZIP, CARDTYPE, COURIER, CREDITCARD, EXPRDATE AS expiryDate, LOCALE, ORDERDATE, ORDERS.ORDERID, TOTALPRICE, USERID AS username, STATUS FROM ORDERS, ORDERSTATUS WHERE ORDERS.USERID = ? AND ORDERS.ORDERID = ORDERSTATUS.ORDERID ORDER BY ORDERDATE";
-    private static final String INSERT_ORDER = "INSERT INTO ORDERS (ORDERID, USERID, ORDERDATE, SHIPADDR1, SHIPADDR2, SHIPCITY, SHIPSTATE, SHIPZIP, SHIPCOUNTRY, BILLADDR1, BILLADDR2, BILLCITY, BILLSTATE, BILLZIP, BILLCOUNTRY, COURIER, TOTALPRICE, BILLTOFIRSTNAME, BILLTOLASTNAME, SHIPTOFIRSTNAME, SHIPTOLASTNAME, CREDITCARD, EXPRDATE, CARDTYPE, LOCALE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    private static final String INSERT_ORDER = "INSERT INTO ORDERS (ORDERID, USERID, ORDERDATE, " +
+            "SHIPADDR1, SHIPADDR2, SHIPCITY, SHIPSTATE, SHIPZIP, SHIPCOUNTRY, BILLADDR1, " +
+            "BILLADDR2, BILLCITY, BILLSTATE, BILLZIP, BILLCOUNTRY, COURIER, TOTALPRICE, " +
+            "BILLTOFIRSTNAME, BILLTOLASTNAME, SHIPTOFIRSTNAME, SHIPTOLASTNAME, CREDITCARD, " +
+            "EXPRDATE, CARDTYPE, LOCALE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, " +
+            "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    private static final String GENERATE_NEW_ORDERID="SELECT MAX(orderId) FROM orders";
+
     private static final String INSERT_ORDER_STATUS = "INSERT INTO ORDERSTATUS (ORDERID, LINENUM, TIMESTAMP, STATUS) VALUES (?, ?, ?, ?)";
 
     // 根据订单 ID 获取订单信息
@@ -116,8 +133,28 @@ public class OrderDao {
         return orders;
     }
 
+    public int generateNewOrderId() throws SQLException {
+        int newOrderId = 1; // 默认初始值
+
+        try (Connection connection = DBUtil.getconnection();
+             PreparedStatement pStatement = connection.prepareStatement(GENERATE_NEW_ORDERID);
+             ResultSet resultSet = pStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                int maxOrderId = resultSet.getInt(1);
+                newOrderId = maxOrderId + 1; // 在最大 ID 的基础上加一
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        return newOrderId;
+    }
+
     // 插入订单信息
-    public void insertOrder(Order order) throws SQLException {
+    public boolean insertOrder(Order order) throws SQLException {
+        boolean result=false;
         Connection conn = null;
         PreparedStatement ps = null;
 
@@ -149,15 +186,25 @@ public class OrderDao {
             ps.setString(23, order.getExpiryDate());
             ps.setString(24, order.getCardType());
             ps.setString(25, order.getLocale());
-            ps.executeUpdate();
+            int rows = ps.executeUpdate();
+            if(rows==1)
+            {
+                result=true;
+            }
+            count++;
         } finally {
             DBUtil.closePreparedStatement(ps);
             DBUtil.closeConnection(conn);
         }
+        return result;
     }
 
+    //获取order的序列号
+
+
     // 插入订单状态信息
-    public void insertOrderStatus(Order order) throws SQLException {
+    public boolean insertOrderStatus(Order order) throws SQLException {
+        boolean result =false;
         Connection conn = null;
         PreparedStatement ps = null;
 
@@ -168,10 +215,15 @@ public class OrderDao {
             ps.setInt(2, order.getOrderId()); // 假设 LINENUM 与 ORDERID 相同
             ps.setTimestamp(3, new Timestamp(order.getOrderDate().getTime()));
             ps.setString(4, order.getStatus());
-            ps.executeUpdate();
+            int rows = ps.executeUpdate();
+            if(rows==1)
+            {
+                result=true;
+            }
         } finally {
             DBUtil.closePreparedStatement(ps);
             DBUtil.closeConnection(conn);
         }
+        return result;
     }
 }

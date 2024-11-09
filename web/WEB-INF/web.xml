@@ -42,15 +42,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>NewOrderFormServlet</servlet-name>
-        <servlet-class>web.petstore.inerWeb.servlet.NewOrderFormServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>NewOrderFormServlet</servlet-name>
-        <url-pattern>/newOrderForm</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>SignOnServlet</servlet-name>
         <servlet-class>web.petstore.inerWeb.servlet.SignOnServlet</servlet-class>
     </servlet>
@@ -156,13 +147,22 @@
         <url-pattern>/searchProductForm</url-pattern>
     </servlet-mapping>
 
+<!--    <servlet>-->
+<!--        <servlet-name>ViewOrderServlet</servlet-name>-->
+<!--        <servlet-class>web.petstore.inerWeb.servlet.ViewOrderServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>ViewOrderServlet</servlet-name>-->
+<!--        <url-pattern>/viewOrder</url-pattern>-->
+<!--    </servlet-mapping>-->
+
     <servlet>
-        <servlet-name>ViewOrderServlet</servlet-name>
-        <servlet-class>web.petstore.inerWeb.servlet.ViewOrderServlet</servlet-class>
+        <servlet-name>NewOrderFormServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.NewOrderFormServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ViewOrderServlet</servlet-name>
-        <url-pattern>/viewOrder</url-pattern>
+        <servlet-name>NewOrderFormServlet</servlet-name>
+        <url-pattern>/newOrderForm</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -174,4 +174,57 @@
         <url-pattern>/newOrder</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ConfirmOrderFormServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.ConfirmOrderFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConfirmOrderFormServlet</servlet-name>
+        <url-pattern>/confirmOrderForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ConfirmOrderServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.ConfirmOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConfirmOrderServlet</servlet-name>
+        <url-pattern>/confirmOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FinalOrderFormServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.FinalOrderFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FinalOrderFormServlet</servlet-name>
+        <url-pattern>/finalOrderForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListOrderServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.ListOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListOrderServlet</servlet-name>
+        <url-pattern>/listOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MyOrderServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.MyOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyOrderServlet</servlet-name>
+        <url-pattern>/myOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ToViewOrderServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.ToViewOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ToViewOrderServlet</servlet-name>
+        <url-pattern>/toViewOrder</url-pattern>
+    </servlet-mapping>
 </web-app>

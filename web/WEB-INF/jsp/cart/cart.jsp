@@ -69,8 +69,8 @@
             <input type="submit" value="Update Cart"> <!-- 更新购物车按钮 -->
         </form>
 
-        <form action="newOrder" method="post" style="display:inline;">
-            <input type="submit" value="View Order">
+        <form action="newOrderForm" method="post" style="display:inline;">
+            <input type="submit" value="New Order">
         </form>
     </div>
 

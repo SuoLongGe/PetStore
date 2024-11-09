@@ -96,4 +96,9 @@ public class NewOrderFormServlet extends HttpServlet {
             req.getRequestDispatcher(NEWORDER_FORM).forward(req, resp);
         }
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.doGet(req,resp);
+    }
 }

@@ -22,6 +22,5 @@
     <orderEntry type="library" name="jstl" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.29" level="project" />
     <orderEntry type="library" name="jsp-api" level="project" />
-    <orderEntry type="library" name="jstl1" level="project" />
   </component>
 </module>

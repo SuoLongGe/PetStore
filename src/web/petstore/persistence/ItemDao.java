@@ -39,7 +39,6 @@ public class ItemDao {
         }
     }
 
-
     public int getInventoryQuantity(String itemId) {
         int result = -1;
         try {
@@ -59,7 +58,7 @@ public class ItemDao {
         return result;
     }
 
-   public List<Item> getItemListByProduct(String var1){
+    public List<Item> getItemListByProduct(String var1){
         List<Item> ItemList=new ArrayList<>();
         try {
             Connection connection=DBUtil.getconnection();

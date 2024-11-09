@@ -60,6 +60,10 @@ public class LineItem implements Serializable {
         return this.total;
     }
 
+    public void setTotal(BigDecimal total){
+        this.total=total;
+    }
+
     public Item getItem() {
         return this.item;
     }

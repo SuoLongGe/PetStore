@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListOrderServlet extends HttpServlet {
-    private static final String ORDERLIST = "/WEB-INF/jsp/order/listOrders1.jsp";
+    private static final String ORDERLIST = "/WEB-INF/jsp/order/listOrders.jsp";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MyOrderServlet extends HttpServlet {
 
-    private static final String MY_ORDERS = "/WEB-INF/jsp/order/myOrders1.jsp";
+    private static final String MY_ORDERS = "/WEB-INF/jsp/order/myOrders.jsp";
     private static final String orderName = "ordernum";
 
     @Override

@@ -21,10 +21,18 @@ import java.util.Map;
 public class ConfirmOrderServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Order order = (Order) session.getAttribute("order");
-        Cart cart = (Cart)session.getAttribute("cart");
+        Cart cart = (Cart) session.getAttribute("cart");
+
+        // 如果购物车为空，返回错误
+        if (cart == null || cart.getNumberOfItems() == 0) {
+            req.setAttribute("errorMessage", "您的购物车为空，请添加商品到购物车后再生成订单。");
+            req.getRequestDispatcher("cartPage.jsp").forward(req, resp);  // 重定向到购物车页面
+            return;
+        }
+
         Order insertorder = new Order();
         insertorder.setOrderId(order.getOrderId());
         insertorder.setUsername(order.getUsername());
@@ -53,28 +61,39 @@ public class ConfirmOrderServlet extends HttpServlet {
         insertorder.setLocale(order.getLocale());
         insertorder.setStatus("OK");
 
-
-
         CartDao cartDao = new CartDao();
-        ItemDao itemDao=new ItemDao();
-        LineItemDao lineItemDao=new LineItemDao();
+        ItemDao itemDao = new ItemDao();
+        LineItemDao lineItemDao = new LineItemDao();
+        List<CartItem> listcartitem=null;
         int cartId = 0; // 获取购物车 ID
-        int j=0;int linenum=0;
+        int j = 0;
+        int linenum = 0;
+
         try {
             cartId = cartDao.getCartIdByUserId(order.getUsername());
+            listcartitem=cartDao.getCartItems(cartId);
+            if (listcartitem == null) {
+
+                req.setAttribute("errorMessage", "未找到购物车信息，请重新登录或联系管理员。");
+                req.getRequestDispatcher("cart.jsp").forward(req, resp);
+                return;
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        List<CartItem> cartItems;  List<LineItem> lineItems=new ArrayList<>(); ;
+
+        List<CartItem> cartItems;
+        List<LineItem> lineItems = new ArrayList<>();
+
         try {
             cartItems = cartDao.getCartItems(cartId);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        for (CartItem cartItem : cartItems)
-        {
+
+        for (CartItem cartItem : cartItems) {
             linenum++;
-            LineItem lineItem=new LineItem();
+            LineItem lineItem = new LineItem();
             lineItem.setOrderId(order.getOrderId());
             lineItem.setLineNumber(linenum);
             lineItem.setItemId(cartItem.getItem().getItemId());
@@ -82,6 +101,8 @@ public class ConfirmOrderServlet extends HttpServlet {
             lineItem.setUnitPrice(cartItem.getTotal());
             lineItems.add(lineItem);
         }
+
+        // 更新库存
         for (LineItem lineItem : order.getLineItems()) {
             String itemId = lineItem.getItemId();
             Integer increment = lineItem.getQuantity();
@@ -90,23 +111,36 @@ public class ConfirmOrderServlet extends HttpServlet {
             param.put("increment", increment);
             itemDao.updateInventoryQuantity(param);  // 更新库存
         }
+
+        // 插入订单项
         for (LineItem lineItem : lineItems) {
             try {
-                if(lineItemDao.insertLineItem(lineItem))
-                {
-                    j++;// 插入每个订单项
+                if (lineItemDao.insertLineItem(lineItem)) {
+                    j++; // 插入每个订单项
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
-        boolean flag;
-        if (cart.getNumberOfItems()==j)flag=true;
-        else flag=false;
 
-            OrderService orderService = new OrderService();
+        // 删除购物车中的商品
+        for (LineItem lineItem : lineItems) {
+            try {
+                // 这里调用 CartDao 中的 removeItemFromCart 来删除商品
+                cartDao.removeItemFromCart(order.getUsername(), lineItem.getItemId()); // 删除购物车中的商品
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        // 判断是否成功生成订单
+        boolean flag;
+        if (cart.getNumberOfItems() == j) flag = true;
+        else flag = false;
+
+        OrderService orderService = new OrderService();
         try {
-            if (orderService.insertOrder(insertorder)&&flag) {
+            if (orderService.insertOrder(insertorder) && flag) {
                 resp.sendRedirect("finalOrderForm");
             } else {
                 req.getRequestDispatcher("newOrderForm").forward(req, resp);
@@ -115,5 +149,4 @@ public class ConfirmOrderServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-
 }

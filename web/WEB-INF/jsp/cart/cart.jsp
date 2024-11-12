@@ -1,16 +1,22 @@
 <%@ include file="../common/top.jsp" %>
 
-
 <div id="BackLink">
     <stripes:link beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean">
         Return to Main Menu
     </stripes:link>
-
 </div>
 
 <div id="Catalog">
     <div id="Cart">
         <h2>Shopping Cart</h2>
+
+        <!-- 错误信息展示 -->
+        <c:if test="${not empty errorMessage}">
+            <div class="error-message" style="color: red; font-weight: bold;">
+                    ${errorMessage}
+            </div>
+        </c:if>
+
         <form action="<%= request.getContextPath() %>/updateCart" method="post">
             <table>
                 <tr>

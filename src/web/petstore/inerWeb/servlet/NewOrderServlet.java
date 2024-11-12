@@ -63,6 +63,7 @@ public class NewOrderServlet extends HttpServlet {
 
         this.userId = req.getParameter("order.UserId");
         LocalDate currentDate = LocalDate.now();
+
         this.orderDate = Date.valueOf(currentDate);
         this.shipAdddr1 = req.getParameter("order.shipAddress1");
         this.shipAdddr2 = req.getParameter("order.shipAddress2");
@@ -154,5 +155,6 @@ public class NewOrderServlet extends HttpServlet {
         }
         return true;
     }
+
 
 }

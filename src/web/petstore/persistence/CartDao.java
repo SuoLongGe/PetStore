@@ -230,5 +230,30 @@ public class CartDao {
 
         return false;
     }
+    public boolean isCartEmpty(int cartId) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBUtil.getconnection();
+            String sql = "SELECT COUNT(*) FROM cart_items WHERE cart_id = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, cartId);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) == 0; // 如果返回结果为 0，表示购物车为空
+            }
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            DBUtil.closeConnection(conn);
+        }
+
+        return true; // 默认返回 true，表示购物车为空
+    }
+
+
 
 }

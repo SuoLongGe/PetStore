@@ -224,7 +224,7 @@ public class ConfirmOrderServlet extends HttpServlet {
             lineItem.setLineNumber(linenum);
             lineItem.setItemId(cartItem.getItem().getItemId());
             lineItem.setQuantity(cartItem.getQuantity());
-            lineItem.setUnitPrice(cartItem.getTotal());
+            lineItem.setUnitPrice(cartItem.getItem().getListPrice());
             lineItems.add(lineItem);
         }
 

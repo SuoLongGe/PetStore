@@ -74,6 +74,11 @@
 
 <div id="Catalog">
     <form action="newOrder" method="post" style="display:inline;">
+        <c:if test="${requestScope.newOrderMsg != null}">
+            <div class="user-form-error">
+                <p style="font-size: 20px; color: red;" > ${requestScope.newOrderMsg}</p>
+            </div>
+        </c:if>
         <!-- Payment Details Section -->
         <div class="form-section">
             <h3>Payment Details</h3>

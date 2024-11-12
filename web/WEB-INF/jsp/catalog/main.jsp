@@ -11,19 +11,30 @@
 <div id="Main">
     <div id="Sidebar">
         <div id="SidebarContent">
+
+            <div class="category-card">
             <a href="categoryForm?categoryId=FISH"><img src="images/fish_icon.gif" /></a><br />
+            </div>
             Saltwater, Freshwater <br />
 
+            <div class="category-card">
             <a href="categoryForm?categoryId=DOGS"><img src="images/dogs_icon.gif" /></a><br />
+            </div>
             Various Breeds <br />
 
+            <div class="category-card">
             <a href="categoryForm?categoryId=CATS"><img src="images/cats_icon.gif" /></a><br />
+            </div>
             Various Breeds, Exotic Varieties <br />
 
+            <div class="category-card">
             <a href="categoryForm?categoryId=REPTILES"><img src="images/reptiles_icon.gif" /></a><br />
+            </div>
             Lizards, Turtles, Snakes <br />
 
+            <div class="category-card">
             <a href="categoryForm?categoryId=BIRDS"><img src="images/birds_icon.gif" /></a><br />
+            </div>
             Exotic Varieties
         </div>
     </div>

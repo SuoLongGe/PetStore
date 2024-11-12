@@ -6,6 +6,7 @@
 <html >
 
 <head>
+    <meta charset="UTF-8">
     <link rel="StyleSheet" href="css/petstore.css" type="text/css"
           media="screen" />
     <title>Genius's PetStore</title>
@@ -22,44 +23,65 @@
 
     <div id="Menu">
         <div id="MenuContent">
+            <div class="top_cart">
             <a href="cartForm"><img align="middle" name="img_cart" src="images/cart.gif" /></a>
+            </div>
             <img  src="images/separator.gif" />
 
+
             <c:if test="${sessionScope.loginAccount == null}">
+            <div class="top_icon">
             <a href="signonForm">Sign in</a>
+            </div>
             <img  src="images/separator.gif" />
             </c:if>
 
             <c:if test="${sessionScope.loginAccount != null}">
+            <div class="top_icon">
             <a href="signOut">Sign out</a>
+            </div>
             <img  src="images/separator.gif" />
-           <a href="editAccountForm">My Account</a>
+            <div class="top_icon">
+            <a href="editAccountForm">My Account</a>
+            </div>
             <img  src="images/separator.gif" />
             </c:if>
+            <div class="top_icon">
                 <a href="help.html">?</a>
+            </div>
         </div>
     </div>
 
     <div id="Search">
         <div id="SearchContent">
             <form action="searchProductForm" method="post">
-                <input type="text" name="keyword" size="14">
-                <input type="submit" name="searchProduct" value="Search">
+                <input type="text" name="keyword" size="18" class="input-text">
+                <input type="submit" name="searchProduct" value="Search" class="submit-btn">
             </form>
         </div>
     </div>
 
     <div id="QuickLinks">
 
-        <a href="categoryForm?categoryId=FISH"><img src="images/sm_fish.gif" /></a>
+        <div class="topcategory-card" >
+        <a href="categoryForm?categoryId=FISH"><img src="images/fish_icon.gif" /></a>
+        </div>
         <img  src="images/separator.gif" />
-        <a href="categoryForm?categoryId=DOGS"><img src="images/sm_dogs.gif" /></a>
+        <div class="topcategory-card" >
+        <a href="categoryForm?categoryId=DOGS"><img src="images/dogs_icon.gif" /></a>
+        </div>
         <img  src="images/separator.gif" />
-        <a href="categoryForm?categoryId=REPTILES"><img src="images/sm_reptiles.gif" /></a>
+        <div class="topcategory-card" >
+        <a href="categoryForm?categoryId=REPTILES"><img src="images/reptiles_icon.gif" /></a>
+        </div>
         <img  src="images/separator.gif" />
-        <a href="categoryForm?categoryId=CATS"><img src="images/sm_cats.gif" /></a>
+        <div class="topcategory-card" >
+        <a href="categoryForm?categoryId=CATS"><img src="images/cats_icon.gif" /></a>
+        </div>
         <img  src="images/separator.gif" />
-        <a href="categoryForm?categoryId=BIRDS"><img src="images/sm_birds.gif" /></a>
+        <div class="topcategory-card" >
+        <a href="categoryForm?categoryId=BIRDS"><img src="images/birds_icon.gif" /></a>
+        </div>
         <img  src="images/separator.gif" />
     </div>
 

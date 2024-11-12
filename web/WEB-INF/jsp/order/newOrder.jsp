@@ -1,5 +1,6 @@
 <%@ include file="../common/top2.jsp"%>
 
+
 <style>
     body {
         font-family: 'Arial', sans-serif;
@@ -103,6 +104,7 @@
             </table>
         </div>
 
+
         <!-- Billing Address Section -->
         <div class="form-section">
             <h3>Billing Address</h3>
@@ -181,7 +183,7 @@
             </table>
         </div>
 
-        <input type="submit" value="Confirm">
+        <input type="submit" value="Continue">
     </form>
 </div>
 

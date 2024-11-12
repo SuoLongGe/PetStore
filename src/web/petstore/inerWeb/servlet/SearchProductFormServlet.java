@@ -60,6 +60,7 @@ import java.util.List;
 public class SearchProductFormServlet extends HttpServlet {
 
     private static final String SEARCH_PRODUCT_FORM = "/WEB-INF/jsp/catalog/searchProduct.jsp";
+    private static final String MAIN_FORM = "/WEB-INF/jsp/catalog/main.jsp";
     private final LogService logService = new LogService(); // 日志服务
 
     @Override
@@ -72,7 +73,7 @@ public class SearchProductFormServlet extends HttpServlet {
 
         // 如果没有输入关键字，返回提示或者执行其他逻辑
         if (keyword == null || keyword.equals("")) {
-            System.out.println("请输入相关信息！");
+            req.getRequestDispatcher(MAIN_FORM).forward(req, resp);
         } else {
             // 执行商品搜索
             ProductDao productDao = new ProductDao();

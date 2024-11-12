@@ -5,7 +5,7 @@
 
 <div id="Catalog">
 
-    <form action="signOn" method="post">
+    <form action="signOn" method="post" onsubmit="return loginSuccess()">
         <p>Please enter your username and password.</p>
         <c:if test="${requestScope.signOnMsg !=null }">
             <p><font color="red">${requestScope.signOnMsg}</font></p>
@@ -14,18 +14,23 @@
             <br/>
             Password : <input type="password" name="password" style="padding: 7px 25px; font-size: 20px;"><br />
             <br/>
-            <img src="signonForm?action=captcha" alt="CAPTCHA" id="captchaImage">
-            <input type="text" name="captcha" placeholder="请输入验证码" style="padding: 7px 25px; font-size: 20px; ">
+            <br/>
+
+            <img src="signonForm?action=captcha" alt="CAPTCHA" id="captchaImage" style="vertical-align: middle;">
+            <input type="text" name="captcha" placeholder="请输入验证码" style="padding: 7px 25px; font-size: 20px; vertical-align: middle; ">
+
         </p>
         <input type="submit" value="Login" style="padding: 10px 25px; font-size: 18px; background-color: #136518; color: white; border: none; border-radius: 5px; cursor: pointer;">
 
+        <script>
+            // 允许用户刷新验证码
+            document.getElementById('captchaImage').onclick = function() {
+                this.src = 'SignOnFormServlet?action=captcha&rand=' + Math.random();
+            };
+        </script>
+
     </form>
-    <script>
-        // 允许用户刷新验证码
-        document.getElementById('captchaImage').onclick = function() {
-            this.src = 'SignOnFormServlet?action=captcha&rand=' + Math.random();
-        };
-    </script>
+
 
     <br/>
     Need a user name and password? &nbsp;&nbsp;

@@ -6,8 +6,7 @@
 <html >
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="StyleSheet" href="css/petstore.css" type="text/css"
+    <link rel="StyleSheet" href="css/user.css" type="text/css"
           media="screen" />
     <title>Genius's PetStore</title>
 </head>
@@ -23,32 +22,21 @@
 
     <div id="Menu">
         <div id="MenuContent">
-            <div class="top_cart">
             <a href="cartForm"><img align="middle" name="img_cart" src="images/cart.gif" /></a>
-            </div>
             <img  src="images/separator.gif" />
-
 
             <c:if test="${sessionScope.loginAccount == null}">
-            <div class="top_icon">
-            <a href="signonForm">Sign in</a>
-            </div>
-            <img  src="images/separator.gif" />
+                <a href="signonForm">Sign in</a>
+                <img  src="images/separator.gif" />
             </c:if>
 
             <c:if test="${sessionScope.loginAccount != null}">
-            <div class="top_icon">
-            <a href="signOut">Sign out</a>
-            </div>
-            <img  src="images/separator.gif" />
-            <div class="top_icon">
-            <a href="editAccountForm">My Account</a>
-            </div>
-            <img  src="images/separator.gif" />
+                <a href="signOut">Sign out</a>
+                <img  src="images/separator.gif" />
+                <a href="editAccountForm">My Account</a>
+                <img  src="images/separator.gif" />
             </c:if>
-            <div class="top_icon">
-                <a href="help.html">?</a>
-            </div>
+            <a href="help.html">?</a>
         </div>
     </div>
 
@@ -64,23 +52,23 @@
     <div id="QuickLinks">
 
         <div class="topcategory-card" >
-        <a href="categoryForm?categoryId=FISH"><img src="images/fish_icon.gif" /></a>
+            <a href="categoryForm?categoryId=FISH"><img src="images/fish_icon.gif" /></a>
         </div>
         <img  src="images/separator.gif" />
         <div class="topcategory-card" >
-        <a href="categoryForm?categoryId=DOGS"><img src="images/dogs_icon.gif" /></a>
+            <a href="categoryForm?categoryId=DOGS"><img src="images/dogs_icon.gif" /></a>
         </div>
         <img  src="images/separator.gif" />
         <div class="topcategory-card" >
-        <a href="categoryForm?categoryId=REPTILES"><img src="images/reptiles_icon.gif" /></a>
+            <a href="categoryForm?categoryId=REPTILES"><img src="images/reptiles_icon.gif" /></a>
         </div>
         <img  src="images/separator.gif" />
         <div class="topcategory-card" >
-        <a href="categoryForm?categoryId=CATS"><img src="images/cats_icon.gif" /></a>
+            <a href="categoryForm?categoryId=CATS"><img src="images/cats_icon.gif" /></a>
         </div>
         <img  src="images/separator.gif" />
         <div class="topcategory-card" >
-        <a href="categoryForm?categoryId=BIRDS"><img src="images/birds_icon.gif" /></a>
+            <a href="categoryForm?categoryId=BIRDS"><img src="images/birds_icon.gif" /></a>
         </div>
         <img  src="images/separator.gif" />
     </div>

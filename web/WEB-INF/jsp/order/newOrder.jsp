@@ -1,8 +1,13 @@
 <%@ include file="../common/top.jsp"%>
 
 <div id="Catalog">
-
     <form action="newOrder" method="post" style="display:inline;">
+        <c:if test="${requestScope.newOrderMsg != null}">
+            <div class="user-form-error">
+                <p style="font-size: 20px; color: red;"> ${requestScope.newOrderMsg}</p>
+            </div>
+        </c:if>
+
     <table>
         <tr>
             <th colspan=2>Payment Details</th>
@@ -110,7 +115,7 @@
             </tr>
         </table>
 
-        <input type="submit" value="Confirm">
+        <input type="submit" value="Continue">
     </form>
 
 <%@ include file="../common/bottom.jsp"%>

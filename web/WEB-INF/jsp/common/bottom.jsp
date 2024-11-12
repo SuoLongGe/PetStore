@@ -16,7 +16,14 @@
     </div>
 
 </div>
-
+<script>
+    function loginSuccess() {
+        alert("Login successful, welcome to the PetStore!!");
+    }
+    function OrderSuccess() {
+        alert("Order successfully created!!!!");
+    }
+</script>
 
 </body>
 </html>

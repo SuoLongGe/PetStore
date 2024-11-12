@@ -7,7 +7,7 @@
 <div id="Catalog">
   Please confirm the information below and then press continue...
 
-  <form action="confirmOrder" method="post" style="display:inline;">
+  <form action="confirmOrder" method="post" style="display:inline;" onsubmit="return OrderSuccess()">
   <table>
     <tr>
       <th align="center" colspan="2">
@@ -94,8 +94,9 @@
       <td><c:out value="${sessionScope.order.shipCountry}" /></td>
     </tr>
 
-    <input type="submit" name="confirmed" value="confirmed">
+
   </table>
+    <input type="submit" name="confirmed" value="confirmed">
   </form>
 
 </div>

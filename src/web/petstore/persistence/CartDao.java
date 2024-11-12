@@ -1,5 +1,6 @@
 package web.petstore.persistence;
 
+import web.petstore.domain.Account;
 import web.petstore.domain.CartItem;
 import web.petstore.domain.Item;
 
@@ -74,7 +75,6 @@ public class CartDao {
                 Item item = new Item();
                 item.setItemId(rs.getString("item_id"));
                 item.setProductId(rs.getString("productid"));
-//                System.out.println(item.getProductId()+"111111111111111111111111111111");
                 item.setListPrice(rs.getBigDecimal("listprice"));
                 item.setUnitCost(rs.getBigDecimal("unitcost"));
                 item.setSupplierId(rs.getInt("supplier"));

@@ -22,7 +22,7 @@ public class SignOnFormServlet extends HttpServlet {
             // 生成验证码
             //String captcha = CaptchaUtil.generateRandomString(4);
             CaptchaUtil captchaUtil=new CaptchaUtil();
-            BufferedImage captchaImage = captchaUtil.generateCaptcha(150, 50);
+            BufferedImage captchaImage = captchaUtil.generateCaptcha(100, 50);
             req.getSession().setAttribute("captcha", captchaUtil.getRandomString()); // 存储在会话中
 
             // 将验证码图像返回给客户端

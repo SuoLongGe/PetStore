@@ -1,10 +1,10 @@
 body {
-    margin: 0ex 10ex 0ex 10ex;
+    margin: 0ex 0ex 0ex 0ex;
     padding: 0ex;
     font-family: helvetica, tahoma, arial, verdana, sans-serif;
     font-size: 2ex;
     color: #333;
-    background-color: #444;
+    background-color: white;
 }
 
 .top_cart {
@@ -152,12 +152,12 @@ th {
     background-color: #e2e2e2;
 }
 
-a, a:visited, a:link {
-    color: #0c627c;
-    font-size: 30px;
-    text-decoration: none;
-    font-family: helvetica, tahoma, arial, verdana, sans-serif;
-}
+/*a, a:visited, a:link {*/
+/*    color: #0c627c;*/
+/*    font-size: 30px;*/
+/*    text-decoration: none;*/
+/*    font-family: helvetica, tahoma, arial, verdana, sans-serif;*/
+/*}*/
 
 a:hover {
     color: #69f;
@@ -276,7 +276,7 @@ body>#Search {
     border-style: solid;
     border-color: #ccc;
     float: left;
-    background-color: #000;
+    background-color: #fff;
     color: #fff;
     line-height: 9ex;
     voice-family: "\"}\"";
@@ -289,7 +289,7 @@ body>#PoweredBy {
 }
 
 #Banner {
-    width: 69%;
+    width: 70%;
     height: 9ex;
     margin: 0ex 0ex 0ex 0ex;
     padding: 0ex 0ex 0ex 0ex;
@@ -297,7 +297,7 @@ body>#PoweredBy {
     border-style: solid;
     border-color: #ccc;
     float: left;
-    background-color: #000;
+    background-color: #fff;
     color: #fff;
     line-height: 9ex;
     voice-family: "\"}\"";
@@ -313,6 +313,7 @@ body>#Banner {
     margin: 0;
     padding: 0ex 0ex 0ex 0ex;
     width: 99%;
+    height: 80%;
     color: #333;
     background-color: #FFF;
     border-width: 0;

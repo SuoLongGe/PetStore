@@ -1,0 +1,238 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+.w{
+    width: 1632px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.w2{
+    width: 1673px;
+    height: 80%;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+li{
+    list-style: none;
+}
+
+.nav-top{
+    background: #eee;
+    height: 30px;
+    line-height: 30px;
+}
+
+.nav-top .user-info{
+    float: left;
+}
+
+.nav-top .nav-top-list .nav-top-item .link{
+    color: #999;
+    cursor: pointer;
+    text-decoration: none;
+}
+.nav-top .nav-top-list .nav-top-item .link:hover{
+    color: #215496;
+}
+
+.nav-top .nav-top-list .nav-top-item .link-text{
+    color: #999;
+    text-decoration: none;
+}
+
+.nav-top .user-info .link{
+    color: #999;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.nav-top .user-info .link:hover{
+    color: #215496;
+}
+
+.nav-top .user-info .link-text{
+    margin-right: 40px;
+}
+
+.nav-top .user-info .user.login{
+    display: none;
+}
+
+.nav-top .nav-top-list{
+    float: right;
+}
+
+.nav-top .nav-top-list .nav-top-item{
+    margin-top: auto;
+    display: inline-block;
+    margin-left: 35px;
+}
+
+.nav-search .logo{
+    position: absolute;
+    left: 358px;
+    top: 29px;
+    display: block;
+    font-size: 39px;
+    font-weight: bold;
+    color: #215496;
+}
+
+.link1 {
+    display: flex;
+    align-items: center;
+}
+
+.logo img{
+    position: absolute;
+    top: -19px;
+    left: -102px;
+    height: 91px;
+}
+
+.nav-search{
+    border-bottom: 1px solid #215496;
+}
+
+.nav-search .search-content{
+    padding: 32px 0 30px 530px;
+    display: flex; /* 使父容器成为 flex 容器 */
+    align-items: center; /* 让所有子元素垂直居中 */
+}
+
+.nav-search .search-content .search-input{
+    width: 500px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    border: 2px solid #215496;
+    outline: none;
+}
+
+.nav-search .search-content .search-btn{
+    position: absolute;
+    width: 120px;
+    height: 44px;/*含有border*/
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.quick-head{
+    margin-left: 150px;
+    font-weight: bold;
+}
+.quick{
+    margin-left: 15px;
+    font-weight: bold;
+}
+.quick-head a {
+    text-decoration: none;
+    color: #333;
+    position: relative;
+    padding: 5px 15px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+.quick-head a:hover {
+    color: #fff;
+    background-color: #2773c5;
+    border-color: #007BFF; /* 边框颜色变化 */
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+}
+
+.quick a {
+    text-decoration: none;
+    color: #333;
+    position: relative;
+    padding: 5px 15px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.quick a:hover {
+    color: #fff;
+    background-color: #2773c5;
+    border-color: #007BFF; /* 边框颜色变化 */
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.5); /* 阴影变化 */
+}
+
+.w2 .main-item{
+    display: flex;
+    margin-bottom: 60px;
+    margin-left: 114px;
+    margin-right: 20px;
+
+}
+
+.w2 .main-item .gif{
+    position: relative;
+    margin-left: 70px;
+    margin-top: 10px;
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+
+}
+
+.gif img{
+    position: absolute;
+    top: -19px;
+    left: -102px;
+    height: 243px;
+    margin-right: 20px;
+    margin-top: 10px;
+    border-radius: 120px;
+}
+
+.gif p{
+    margin-top: 53px;
+    text-decoration: none;
+    color: #434242;
+    position: relative;
+    font-size: 27px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.gif p::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: #00ffcc;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.gif p:hover::before {
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+}
+
+.gif p:hover {
+    color: black;
+    text-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc;
+}
+
+.text p{
+    width: 650px;
+    margin-left: 300px;
+    margin-top: 15px;
+    font-size: 25px;
+}
+.text{
+    background-color: #e3e0e0;
+}

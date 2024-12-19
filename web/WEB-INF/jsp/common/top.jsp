@@ -7,84 +7,75 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="StyleSheet" href="css/petstore.css" type="text/css"
-          media="screen" />
+    <link rel="StyleSheet" href="css/petstore.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/top.css">
     <title>Genius's PetStore</title>
+    <script src="https://kit.fontawesome.com/1c3b84e567.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-<div id="Header">
-
-    <div id="Logo">
-        <div id="LogoContent">
-            <a href="mainForm"><img src="images/logo-topbar.gif" /></a>
-        </div>
-    </div>
-
-    <div id="Menu">
-        <div id="MenuContent">
-            <div class="top_cart">
-            <a href="cartForm"><img align="middle" name="img_cart" src="images/cart.gif" /></a>
-            </div>
-            <img  src="images/separator.gif" />
-
+<div class="nav-top">
+    <div class="w">
+        <div class="user-info">
 
             <c:if test="${sessionScope.loginAccount == null}">
-            <div class="top_icon">
-            <a href="signonForm">Sign in</a>
-            </div>
-            <img  src="images/separator.gif" />
+                <span class="user not-login">
+                <a href="signonForm" class="link">Login </a>
+                <a href="registerForm" class="link"> Register</a>
+                </span>
             </c:if>
+
 
             <c:if test="${sessionScope.loginAccount != null}">
-            <div class="top_icon">
-            <a href="signOut">Sign out</a>
-            </div>
-            <img  src="images/separator.gif" />
-            <div class="top_icon">
-            <a href="editAccountForm">My Account</a>
-            </div>
-            <img  src="images/separator.gif" />
+            <span class="user not-login">
+                <span class="link-text">
+                    欢迎您，<span class="username">${loginAccount.username}</span>
+                </span>
+                <a href="signOut" class="link">Sign out</a>
+                </span>
             </c:if>
-            <div class="top_icon">
-                <a href="help.html">?</a>
-            </div>
         </div>
+
+        <ul class="nav-top-list">
+
+            <c:if test="${sessionScope.loginAccount != null}">
+            <li class="nav-top-item">
+                <a href="cartForm" class="link">
+                    <i class="fa fa-shopping-cart"></i>
+                    Shopping Cart
+                </a>
+            </li>
+            <li class="nav-top-item">
+                <a href="myOrder" class="link">MyOrder</a>
+            </li>
+            <li class="nav-top-item">
+                <a href="editAccountForm" class="link">个人中心</a>
+            </li>
+            </c:if>
+
+            <li class="nav-top-item">
+                <a href="help.html" class="link">关于MyStore</a>
+            </li>
+        </ul>
+
     </div>
-
-    <div id="Search">
-        <div id="SearchContent">
-            <form action="searchProductForm" method="post">
-                <input type="text" name="keyword" size="18" class="input-text">
-                <input type="submit" name="searchProduct" value="Search" class="submit-btn">
-            </form>
-        </div>
-    </div>
-
-    <div id="QuickLinks">
-
-        <div class="topcategory-card" >
-        <a href="categoryForm?categoryId=FISH"><img src="images/fish_icon.gif" /></a>
-        </div>
-        <img  src="images/separator.gif" />
-        <div class="topcategory-card" >
-        <a href="categoryForm?categoryId=DOGS"><img src="images/dogs_icon.gif" /></a>
-        </div>
-        <img  src="images/separator.gif" />
-        <div class="topcategory-card" >
-        <a href="categoryForm?categoryId=REPTILES"><img src="images/reptiles_icon.gif" /></a>
-        </div>
-        <img  src="images/separator.gif" />
-        <div class="topcategory-card" >
-        <a href="categoryForm?categoryId=CATS"><img src="images/cats_icon.gif" /></a>
-        </div>
-        <img  src="images/separator.gif" />
-        <div class="topcategory-card" >
-        <a href="categoryForm?categoryId=BIRDS"><img src="images/birds_icon.gif" /></a>
-        </div>
-        <img  src="images/separator.gif" />
-    </div>
-
 </div>
 
+<div class="nav-search">
+    <div class="w">
+        <a href="mainForm" class="link1 logo">
+            <img src="images/top-bar.gif" />
+            Mystore</a>
+        <div class="search-content">
+            <form action="searchProductForm" method="post">
+            <input type="text" name="keyword" size="18" class="search-input" />
+            <input type="submit" name="searchProduct" value="Search" class="btn search-btn">
+            </form>
+            <div class="quick-head"><a href="categoryForm?categoryId=FISH">Fish</a></div>
+            <div class="quick"><a href="categoryForm?categoryId=DOGS">Dog</a></div>
+            <div class="quick"><a href="categoryForm?categoryId=REPTILES">Reptiles</a></div>
+            <div class="quick"><a href="categoryForm?categoryId=CATS">Cat</a></div>
+            <div class="quick"><a href="categoryForm?categoryId=BIRDS">Birds</a></div>
+        </div>
+    </div>
+</div>
 <div id="Content">

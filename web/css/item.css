@@ -1,0 +1,106 @@
+/* 通用样式 */
+#Catalog {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#BackLink {
+    margin-bottom: 20px;
+}
+
+/* 左侧内容样式 */
+.catalog-left {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.product-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.product-rating {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #666;
+}
+
+.rating-stars {
+    color: #f39c12;
+}
+
+.product-stock {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.out-of-stock {
+    color: red;
+}
+
+/* 购买区域样式 */
+.purchase-container {
+    display: flex;
+    align-items: center;
+    gap: 150px;
+    margin-bottom: 20px;
+}
+
+.quantity-label {
+    font-size: 1rem;
+    color: #333;
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+.add-to-cart-button {
+    padding: 10px 20px;        /* 增加内边距，提升按钮的可点击区域 */
+    font-size: 1.2rem;         /* 设置更大的字体，以提高可读性 */
+    background-color: #28a745; /* 按钮的背景色 */
+    color: white;              /* 按钮文本颜色 */
+    border: none;              /* 去除默认边框 */
+    border-radius: 5px;        /* 增加圆角 */
+    cursor: pointer;          /* 鼠标悬停时显示为手形 */
+    transition: background-color 0.3s ease; /* 鼠标悬停时按钮背景颜色平滑过渡 */
+    width: 150px;              /* 设置按钮宽度 */
+}
+
+.add-to-cart-button:hover {
+    background-color: #218838; /* 鼠标悬停时按钮背景色 */
+}
+
+
+
+
+
+/* 额外说明样式 */
+.product-shipping-info {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* 右侧内容样式 */
+.catalog-right {
+    flex: 0 0 40%;
+    padding-left: 20px;
+    border-left: 1px solid #ccc;
+}

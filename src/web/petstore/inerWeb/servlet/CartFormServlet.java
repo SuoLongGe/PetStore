@@ -13,14 +13,13 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-
 public class CartFormServlet extends HttpServlet {
 
+    private CartDao cartDao;
     private static final String CART_FORM = "/WEB-INF/jsp/cart/cart.jsp";
-    private CartDao cartDao = new CartDao();
+    private static final String CART_TABLE_PARTIAL = "/WEB-INF/jsp/cart/cartTable.jsp";
 
     @Override
-
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 获取当前用户ID，假设用户已经登录
         HttpSession session = req.getSession();
@@ -34,64 +33,80 @@ public class CartFormServlet extends HttpServlet {
             return;
         }
 
-        Cart cart = (Cart) session.getAttribute("cart");
+        cartDao = new CartDao();
 
         try {
+            Cart cart = (Cart) session.getAttribute("cart");
+
             if (cart == null) {
                 cart = new Cart();
-                Integer cartId = null;
-                try {
-                    cartId = cartDao.getCartIdByUserId(userId);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
+                Integer cartId = cartDao.getCartIdByUserId(userId);
                 List<CartItem> cartItems = cartDao.getCartItems(cartId);
                 cart.setCartItems(cartItems);
                 session.setAttribute("cart", cart); // 将购物车保存到Session
             } else {
                 // 如果购物车已存在，检查是否需要更新购物车商品列表
-               int cartId = cartDao.getCartIdByUserId(userId);
+                int cartId = cartDao.getCartIdByUserId(userId);
                 List<CartItem> cartItems = cartDao.getCartItems(cartId);
                 cart.setCartItems(cartItems);
             }
 
-            req.getRequestDispatcher(CART_FORM).forward(req, resp);
+            // 判断是否为 AJAX 请求
+            String ajaxRequest = req.getHeader("X-Requested-With");
+            if ("XMLHttpRequest".equals(ajaxRequest)) {
+                // 如果是 AJAX 请求，返回部分内容（如购物车表格）
+                req.getRequestDispatcher(CART_TABLE_PARTIAL).forward(req, resp);
+            } else {
+                // 正常请求，渲染整个购物车页面
+                req.getRequestDispatcher(CART_FORM).forward(req, resp);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             req.setAttribute("errorMessage", "加载购物车内容失败");
-            req.getRequestDispatcher("/WEB-INF/jsp/cart/error.jsp").forward(req, resp);
+
         }
     }
-
 
     @Override
-
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Cart cart = (Cart) req.getSession().getAttribute("cart");
-        if (cart != null) {
-            for (CartItem cartItem : cart.getCartItemList()) {
-                String itemId = cartItem.getItem().getItemId();
-                String quantityStr = req.getParameter(itemId);
-                if (quantityStr != null && !quantityStr.isEmpty()) {
-                    try {
-                        int quantity = Integer.parseInt(quantityStr);
-                        if (quantity > 0) {
-                            if (cart.containsItemId(itemId)) {
-                                cart.setQuantityByItemId(itemId, quantity); // 更新购物车中商品的数量
-                            } else {
-                                System.out.println("Item with ID " + itemId + " is not found in the current cart.");
-                            }
+        String itemId = req.getParameter("itemId");
+        String quantityStr = req.getParameter("quantity");
+
+        if (itemId != null && quantityStr != null) {
+            try {
+                int quantity = Integer.parseInt(quantityStr);
+
+                if (quantity > 0) {
+                    Cart cart = (Cart) req.getSession().getAttribute("cart");
+                    if (cart != null) {
+                        if (cart.containsItemId(itemId)) {
+                            cart.setQuantityByItemId(itemId, quantity);
                         } else {
-                            cart.removeItemById(itemId); // 删除商品
+                            System.out.println("Item with ID " + itemId + " is not found in the current cart.");
                         }
-                    } catch (NumberFormatException e) {
-                        System.out.println("Invalid quantity input for item ID " + itemId);
-                        // Handle invalid input gracefully (maybe log it)
+                    }
+                } else {
+                    Cart cart = (Cart) req.getSession().getAttribute("cart");
+                    if (cart != null) {
+                        cart.removeItemById(itemId);
                     }
                 }
+
+                // AJAX 请求处理：返回更新后的购物车 HTML 和小计
+                Cart cart = (Cart) req.getSession().getAttribute("cart");
+
+                resp.setContentType("application/json");
+                req.setAttribute("cart", cart);  // 将 cart 传递给 JSP
+                req.setAttribute("subTotal", cart.getSubTotal());// 将小计传递给 JSP
+                System.out.println(cart.getSubTotal()+"111111111111111");
+
+
+                req.getRequestDispatcher(CART_TABLE_PARTIAL).forward(req, resp);
+
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid quantity format");
             }
         }
-        resp.sendRedirect(req.getRequestURI());  // 刷新页面，显示更新后的购物车
     }
-
 }

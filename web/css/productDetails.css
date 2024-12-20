@@ -1,0 +1,114 @@
+/* 通用设置 */
+body {
+    font-family: Arial, sans-serif; /* 通用字体 */
+    background: #f4f4f4; /* 背景色 */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* 禁止水平滚动 */
+}
+
+/* 顶部返回链接 */
+#BackLink {
+    text-align: right; /* 返回链接右对齐 */
+    padding: 10px 20px;
+    background: #333; /* 背景色 */
+    color: white; /* 字体颜色 */
+}
+
+#BackLink a {
+    color: #ffc107; /* 链接颜色 */
+    text-decoration: none;
+    font-size: 14px; /* 调整字体大小 */
+}
+
+#BackLink a:hover {
+    text-decoration: underline; /* 悬停显示下划线 */
+}
+
+/* 产品详细信息容器 */
+#Catalog {
+    background: white;
+    width: 80%; /* 容器宽度 */
+    max-width: 1200px; /* 限制最大宽度，避免过宽 */
+    margin: 30px auto; /* 上下和左右居中 */
+    padding: 30px;
+    border-radius: 10px; /* 添加圆角 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+
+/* 标题样式 */
+h2 {
+    text-align: center; /* 居中 */
+    font-size: 36px; /* 增大字体大小 */
+    color: #333; /* 标题颜色 */
+    font-weight: bold; /* 加粗 */
+    line-height: 1.5; /* 行高 */
+    margin-bottom: 40px; /* 标题与下方内容的间距 */
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    width: 80px;
+    height: 4px;
+    background-color: red; /* 下划线颜色 */
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* 表格样式 */
+table {
+    width: 100%; /* 表格宽度 */
+    border-collapse: collapse; /* 合并边框 */
+    margin-top: 20px; /* 与标题的间距 */
+    font-size: 16px; /* 调整表格字体大小 */
+}
+
+th, td {
+    text-align: left; /* 左对齐 */
+    padding: 15px; /* 调整单元格内边距 */
+    border-bottom: 1px solid #ddd; /* 添加单元格边框 */
+}
+
+th {
+    background-color: #f8f8f8; /* 表头背景色 */
+    font-weight: bold; /* 加粗表头文字 */
+    color: #333; /* 表头文字颜色 */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* 偶数行的背景色 */
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* 鼠标悬停时的背景色 */
+}
+
+/* 按钮样式 */
+.Button {
+    display: inline-block;
+    background: red; /* 按钮背景色 */
+    color: white; /* 按钮文字颜色 */
+    padding: 10px 20px; /* 按钮内边距 */
+    text-decoration: none; /* 去掉下划线 */
+    border-radius: 5px; /* 添加圆角 */
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.3s ease; /* 添加过渡效果 */
+}
+
+.Button:hover {
+    background: darkred; /* 悬停时的背景色 */
+}
+
+/* 底部版权信息 */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #333; /* 背景色 */
+    color: white; /* 字体颜色 */
+    margin-top: 40px;
+    font-size: 14px;
+}

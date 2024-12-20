@@ -1,7 +1,10 @@
 body {
-    background: #e1b8b8;
+    background: #ffffff;
     /*这段代码是一个常用的字体设置，可以确保在不同系统和设备上都有良好的显示效果。*/
     font: 12px/1.5 tahoma, arial, Microsoft YaHei, sans-serif;
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
 }
 
 h1 {
@@ -9,14 +12,39 @@ h1 {
     text-align: center; /* 让文字居中 */
 }
 
-p{
-    padding: 0;
-    margin: 0;
+.logo{
+    position: absolute;
+    left: 100px;
+    top: 11px;
+    display: block;
+    font-size: 39px;
+    font-weight: bold;
+    color: #215496;
+}
+
+.link1 {
+    display: flex;
+    align-items: center;
+}
+
+.logo img{
+    position: absolute;
+    top: -9px;
+    left: -102px;
+    height: 91px;
+}
+
+.w1{
+    /*width: 1080px;*/
+    height: 832px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    padding: 50px 50px;
 }
 
 .w{
-    width: 1080px;
-    height: 1200px;
     margin: auto;
     position: relative;
     overflow: hidden;
@@ -25,10 +53,10 @@ p{
 }
 
 .user-content{
-    margin-left: 90px;
+    margin-left: 0px;
     background: #fff;
     position: relative;
-    width: 400px;
+    /*width: 400px;*/
     /*height: 350px;*/
 }
 
@@ -68,7 +96,11 @@ p{
 .user-content .user-form .user-form-item{
     position: relative;
     margin-top: 20px;
+}
 
+.user-content .user-form .user-form-item1{
+    position: relative;
+    margin-top: 20px;
 }
 
 .user-form .user-form-item .user-form-label{
@@ -85,13 +117,71 @@ p{
 }
 
 .user-content .user-form .user-form-item .user-form-input{
-    padding: 10px 0 10px 50px;
-    width: 308px;
-    height: 40px;
+    padding: 10px 0 10px 10px;
+    width: 708px;
+    height: 48px;
     line-height: 20px;
-    font-size: 18px;
-    border:  1px solid #bdbdbd;
+    font-size: 20px;
+    border-radius: 8px;
+    border:  1px solid #449c6c;
     outline: none;
+}
+
+.user-content .user-form .user-form-item1 .user-form-input1{
+    padding: 10px 0 10px 10px;
+    width: 608px;
+    height: 48px;
+    line-height: 20px;
+    font-size: 20px;
+    border-radius: 8px;
+    border:  1px solid #90b4d6;
+    outline: none;
+}
+
+.user-form-item1 p, .user-form-input1 {
+    display: inline-block; /* 使元素在同一行显示 */
+    vertical-align: middle;
+
+}
+
+
+.user-form-input, #feedback1, #feedback2, #feedback3{
+    display: inline-block; /* 使元素水平排列 */
+    vertical-align: middle; /* 垂直居中对齐 */
+    margin-right: 10px; /* 间隔 */
+    font-size: 15px;
+}
+
+.user-form-input1, #feedback4, #feedback5, #feedback6, #feedback7,
+#feedback8, #feedback9, #feedback10, #feedback11, #feedback12{
+    display: inline-block; /* 使元素水平排列 */
+    vertical-align: middle; /* 垂直居中对齐 */
+    margin-right: 10px; /* 间隔 */
+    font-size: 15px;
+}
+
+.user-content .user-form .user-form-item .user-form-input:focus{
+    border: 1px solid #4c8e66; /* 焦点时边框颜色变深 */
+    background-color: #faf6f6;
+}
+
+.user-content .user-form .user-form-item1 .user-form-input1:focus{
+    border: 1px solid #344978; /* 焦点时边框颜色变深 */
+    background-color: #faf6f6;
+}
+
+.user-form-item1 p,
+.user-form-item1 select {
+    display: inline-block; /* 使元素在同一行显示 */
+    vertical-align: middle; /* 垂直居中对齐 */
+    margin: 0; /* 清除默认外边距 */
+}
+
+.user-form-item1 p,
+.user-form-item1 input {
+    display: inline-block; /* 使元素在同一行显示 */
+    vertical-align: middle; /* 垂直居中对齐 */
+    margin: 0; /* 清除默认外边距 */
 }
 
 .user-form-input2{
@@ -106,15 +196,15 @@ p{
 }
 
 .user-form .user-form-item .user-form-submit{
-    width: 95%;
+    width: 30%;
     font-size: 20px;
     padding:  2px, 0;
     font-weight: bold;
     height: 40px;
-    background: #709bd3;
+    background: #215496;
     color: #fff;
     cursor: pointer;/*鼠标放上去是一个指着的样式*/
-    border:  1px solid #709bd3;
+    border:  1px solid #1c4478;
 }
 
 .user-form .user-form-link{
@@ -231,4 +321,30 @@ td.last .link{
     text-decoration: none;
     cursor: pointer;
     border-radius: 4px;
+}
+
+.custom-checkbox{
+    -webkit-appearance: none;  /* 隐藏默认的样式 */
+    -moz-appearance: none;
+    appearance: none;
+    width: 30px;  /* 设置宽度 */
+    height: 30px; /* 设置高度 */
+    border: 2px solid #000; /* 设置边框 */
+    border-radius: 8px; /* 设置圆角 */
+    background-color: white;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* 背景色变化的过渡 */
+}
+.custom-checkbox:checked::before {
+    content: '\2714'; /* Unicode 勾选符号 */
+    font-size: 30px; /* 设置勾的大小 */
+    color: #ffffff;  /* 设置勾的颜色 */
+    position: absolute;
+    top: -8px;
+    left: 1px;
+}
+.custom-checkbox:checked {
+    background-color: black;  /* 设置勾选时的背景色 */
 }

@@ -227,4 +227,31 @@
         <servlet-name>ToViewOrderServlet</servlet-name>
         <url-pattern>/toViewOrder</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserinfoExistServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.UserinfoExistServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserinfoExistServlet</servlet-name>
+        <url-pattern>/userinfoExist</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SignOnCheckServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.SignOnCheckServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignOnCheckServlet</servlet-name>
+        <url-pattern>/signonCheck</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetCaptchaServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.GetCaptchaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetCaptchaServlet</servlet-name>
+        <url-pattern>/getCaptcha</url-pattern>
+    </servlet-mapping>
 </web-app>

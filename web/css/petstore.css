@@ -1,10 +1,82 @@
 body {
-    margin: 0ex 10ex 0ex 10ex;
+    margin: 0ex 0ex 0ex 0ex;
     padding: 0ex;
     font-family: helvetica, tahoma, arial, verdana, sans-serif;
     font-size: 2ex;
     color: #333;
-    background-color: #444;
+    background-color: white;
+}
+
+.top_cart {
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.top_cart:hover {
+    transform: scale(2);
+}
+
+.top_icon {
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.top_icon:hover {
+    transform: scale(1.05);
+}
+
+.category-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+    transform: scale(1.05);
+}
+
+.topcategory-card {
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.topcategory-card:hover {
+    transform: scale(1.5);
+}
+
+.search_icon:hover{
+    display: inline-block;
+    color: blue;
+}
+
+.submit-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* 悬浮样式 */
+.submit-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* 可选：点击时的样式 */
+.submit-btn:active {
+    background-color: #003f7f;
+    transform: scale(0.95);
+}
+
+.input-text {
+    height: 30px;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 pre {
@@ -80,12 +152,12 @@ th {
     background-color: #e2e2e2;
 }
 
-a, a:visited, a:link {
-    color: #0c627c;
-    font-size: 30px;
-    text-decoration: none;
-    font-family: helvetica, tahoma, arial, verdana, sans-serif;
-}
+/*a, a:visited, a:link {*/
+/*    color: #0c627c;*/
+/*    font-size: 30px;*/
+/*    text-decoration: none;*/
+/*    font-family: helvetica, tahoma, arial, verdana, sans-serif;*/
+/*}*/
 
 a:hover {
     color: #69f;
@@ -146,7 +218,7 @@ body>#Logo {
     height: 9ex;
 }
 
-#Menu, #Menu a, #Menu a:link, #Menu a:visited, #Menu a:hover {
+#Menu, #Menu a, #Menu a:link, #Menu a:visited {
     color: #eaac00;
     text-decoration: none;
     font-family: helvetica, tahoma, arial, verdana, sans-serif;
@@ -204,7 +276,7 @@ body>#Search {
     border-style: solid;
     border-color: #ccc;
     float: left;
-    background-color: #000;
+    background-color: #fff;
     color: #fff;
     line-height: 9ex;
     voice-family: "\"}\"";
@@ -217,7 +289,7 @@ body>#PoweredBy {
 }
 
 #Banner {
-    width: 69%;
+    width: 70%;
     height: 9ex;
     margin: 0ex 0ex 0ex 0ex;
     padding: 0ex 0ex 0ex 0ex;
@@ -225,7 +297,7 @@ body>#PoweredBy {
     border-style: solid;
     border-color: #ccc;
     float: left;
-    background-color: #000;
+    background-color: #fff;
     color: #fff;
     line-height: 9ex;
     voice-family: "\"}\"";
@@ -241,6 +313,7 @@ body>#Banner {
     margin: 0;
     padding: 0ex 0ex 0ex 0ex;
     width: 99%;
+    height: 80%;
     color: #333;
     background-color: #FFF;
     border-width: 0;

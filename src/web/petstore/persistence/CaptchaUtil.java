@@ -15,15 +15,15 @@ public class CaptchaUtil {
         Graphics2D g = image.createGraphics();
 
         // 设置背景色
-        g.setColor(Color.gray);
-        g.fillRect(0, 0, width, height);
+        g.setColor(Color.black);
+        g.fillRect(5, 6, width, height);
 
         // 生成验证码字符串
         String captcha = generateRandomString(4);
 
         // 在图像上绘制验证码
-        g.setFont(new Font("Serif", Font.BOLD, 40));
-        g.setColor(Color.BLACK);
+        g.setFont(new Font("Serif", Font.BOLD, 30));
+        g.setColor(Color.WHITE);
         g.drawString(captcha, 10, 40);
 
         // 释放图形上下文

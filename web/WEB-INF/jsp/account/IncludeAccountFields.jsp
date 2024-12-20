@@ -1,84 +1,98 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<h3>Account Information</h3>
-<table>
-  <tr>
-    <td>First name:</td>
-    <td><input type="text"  class="user-form-input2" name="firstName" id="firstName" placeholder="请输入姓" autocomplete="off"></td>
-  </tr>
-  <tr>
-    <td>Last name:</td>
-    <td><input type="text"  class="user-form-input2" name="lastName" id="lastName" placeholder="请输入名" autocomplete="off"></td>
-  </tr>
-  <tr>
-    <td>Email:</td>
-    <td><input type="text"  class="user-form-input2" name="email" id="email" placeholder="请输入邮箱" autocomplete="off"></td>
-  </tr>
-  <tr>
-    <td>Phone:</td>
-    <td><input type="text"  class="user-form-input2" name="phone" id="phone" placeholder="请输入电话号码" autocomplete="off"></td>
-  </tr>
-  <tr>
-    <td>Address 1:</td>
-    <td><input type="text"  class="user-form-input2" name="address1" id="address1" placeholder="请输入联系地址1" autocomplete="off"></td>
-  </tr>
-  <tr>
-    <td>Address 2:</td>
-    <td><input type="text"  class="user-form-input2" name="address2" id="address2" placeholder="请输入联系地址2(选填)" autocomplete="off"></td>
-  </tr>
-  <tr>
-    <td>City:</td>
-    <td><input type="text"  class="user-form-input2" name="city" id="city" placeholder="请输入所在城市" autocomplete="off"></td>
-  </tr>
-  <tr>
-    <td>State:</td>
-    <td><input type="text"  class="user-form-input2" name="state" id="state" placeholder="请输入状态" autocomplete="off"></td>
-  </tr>
-  <tr>
-    <td>Zip:</td>
-    <td><input type="text"  class="user-form-input2" name="zip" id="zip" placeholder="请输入邮编" autocomplete="off"></td>
-  </tr>
-  <tr>
-    <td>Country:</td>
-    <td><input type="text"  class="user-form-input2" name="country" id="country" placeholder="请输入所在国家" autocomplete="off"></td>
-  </tr>
-</table>
+<h3 style="font-size: 25px">Account Information</h3>
 
-<h3>Profile Information</h3>
+<div class="user-form-item1">
+  <p style="color: #344978;font-size: 20px">First name</p>
+  <input type="text" class="user-form-input1" name="firstname" id="firstname"  autocomplete="off">
+  <div  id="feedback4" style="color: red" > </div>
+</div>
 
-<table>
-  <tr>
-    <td>Language Preference:</td>
-    <td>
-      <select id="language" name="account.languagePreference" style="padding: 8px 30px; font-size: 20px">
-        <option value="English" >English</option>
-        <option value="Chinese" >Spanish</option>
-        <option value="French" >French</option>
-        <option value="German" >German</option>
-      </select>
-    </td>
-  </tr>
-  <tr>
-    <td>Favourite Category:</td>
-    <td>
-      <select id="favouriteCategoryId" name="account.favouriteCategoryId" style="padding: 8px 30px; font-size: 20px">
-        <option value="FISH" >Fish</option>
-        <option value="DOGS" >Dogs</option>
-        <option value="REPTILES" >Reptiles</option>
-        <option value="CATS" >Cats</option>
-        <option value="BIRDS" >Birds</option>
-      </select>
-    </td>
-  </tr>
-  <tr>
-    <td>Enable MyList</td>
-    <td>
-      <input type="checkbox" style="width: 30px;height: 30px;" name="account.listOption" value="EnableMyList"></td>
-  </tr>
-  <tr>
-    <td>Enable MyBanner</td>
-    <td>
-      <input type="checkbox" style="width: 30px;height: 30px;" name="account.bannerOption" value="EnableMyBanner">
-    </td>
-  </tr>
+<div class="user-form-item1">
+  <p style="color: #344978;font-size: 20px">Last name</p>
+  <input type="text" class="user-form-input1" name="lastname" id="lastname"  autocomplete="off">
+  <div  id="feedback5" style="color: red" > </div>
+</div>
 
-</table>
+<div class="user-form-item1">
+  <p style="color: #344978;font-size: 20px; margin-right: 43px;">Email</p>
+  <input type="text" class="user-form-input1" name="email" id="email"  autocomplete="off">
+  <div  id="feedback6" style="color: red" > </div>
+</div>
+
+<div class="user-form-item1">
+  <p style="color: #344978;font-size: 20px; margin-right: 35px;">Phone     </p>
+  <input type="text" class="user-form-input1" name="phone" id="phone"  autocomplete="off">
+  <div  id="feedback7" style="color: red" > </div>
+</div>
+
+<div class="user-form-item1">
+  <p style="color: #344978;font-size: 20px">Address 1 </p>
+  <input type="text" class="user-form-input1" name="address1" id="address1"  autocomplete="off">
+  <div  id="feedback8" style="color: red" > </div>
+</div>
+
+<div class="user-form-item1">
+  <p style="color: #344978;font-size: 20px">Address 2</p>
+  <input type="text" class="user-form-input1" name="address2" id="address2"  autocomplete="off">
+
+</div>
+
+<div class="user-form-item1">
+  <p style="color: #344978;font-size: 20px; margin-right: 51px;">City     </p>
+  <input type="text" class="user-form-input1" name="city" id="city"  autocomplete="off">
+  <div  id="feedback9" style="color: red" > </div>
+</div>
+
+<div class="user-form-item1">
+  <p style="color: #344978;font-size: 20px; margin-right: 40px;">State    </p>
+  <input type="text" class="user-form-input1" name="state" id="state"  autocomplete="off">
+  <div  id="feedback10" style="color: red" > </div>
+</div>
+
+<div class="user-form-item1">
+  <p style="color: #344978;font-size: 20px; margin-right: 55px;">Zip     </p>
+  <input type="text" class="user-form-input1" name="zip" id="zip"  autocomplete="off">
+  <div  id="feedback11" style="color: red" > </div>
+</div>
+
+<div class="user-form-item1">
+  <p style="color: #344978;font-size: 20px; margin-right: 15px;">Country </p>
+  <input type="text" class="user-form-input1" name="country" id="country"  autocomplete="off">
+  <div  id="feedback12" style="color: red" > </div>
+</div>
+
+<h3 style="font-size: 25px">Profile Information</h3>
+
+<div class="user-form-item1">
+  <p style="color: #344978;font-size: 20px; margin-right: 3px;">Language Preference</p>
+  <select id="language" name="account.languagePreference" style="border-radius:8px; padding: 8px 30px; font-size: 20px">
+    <option value="English" >English</option>
+    <option value="Chinese" >Spanish</option>
+    <option value="French" >French</option>
+    <option value="German" >German</option>
+  </select>
+</div>
+
+<div class="user-form-item1">
+  <p style="color: #344978;font-size: 20px; margin-right: 13px;">Favourite Category</p>
+  <select id="favouriteCategoryId" name="account.favouriteCategoryId" style="border-radius:8px;padding: 8px 30px; font-size: 20px">
+    <option value="FISH" >Fish</option>
+    <option value="DOGS" >Dogs</option>
+    <option value="REPTILES" >Reptiles</option>
+    <option value="CATS" >Cats</option>
+    <option value="BIRDS" >Birds</option>
+  </select>
+</div>
+
+<div class="user-form-item1">
+  <input type="checkbox" class="custom-checkbox" style="border-radius:8px; width: 30px;height: 30px;" name="account.listOption" value="EnableMyList"></td>
+  <p style="color: black;font-size: 20px; margin-right: 40px;"> &nbsp; I'll receive "MyList" to see my want </p>
+</div>
+
+<div class="user-form-item1">
+  <input type="checkbox" class="custom-checkbox" style="border-radius:8px; width: 30px;height: 30px;" name="account.bannerOption" value="EnableMyBanner">
+  <p style="color: black;font-size: 20px; margin-right: 30px;"> &nbsp; I'll receive "MyBanner" to see my favourite category</p>
+</div>
+
+<script src="js/check-userinfo.js"> </script>
+

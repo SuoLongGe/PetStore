@@ -83,6 +83,7 @@
 <div id="Catalog">
   <p>Please confirm the information below and then press continue...</p>
 
+
   <form action="confirmOrder" method="post" style="display:inline;">
     <table>
       <tr>
@@ -98,6 +99,7 @@
           </font>
         </th>
       </tr>
+
 
       <!-- Billing Address Section -->
       <tr>
@@ -136,6 +138,7 @@
         <td><b><c:out value="${sessionScope.order.billCountry}" /></b></td>
       </tr>
 
+
       <!-- Shipping Address Section -->
       <tr>
         <th colspan="2">Shipping Address</th>
@@ -172,6 +175,7 @@
         <td>Country:</td>
         <td><b><c:out value="${sessionScope.order.shipCountry}" /></b></td>
       </tr>
+
 
       <tr>
         <td colspan="2">

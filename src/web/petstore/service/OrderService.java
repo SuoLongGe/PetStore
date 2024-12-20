@@ -33,29 +33,29 @@ public class OrderService {
         int cartId = cartDao.getCartIdByUserId(order.getUsername()); // 获取购物车 ID
         List <CartItem> cartItems = cartDao.getCartItems(cartId);
 
-        for (LineItem lineItem : order.getLineItems()) {
-
-            String itemId = lineItem.getItemId();
-            Integer increment = lineItem.getQuantity();
-            Map<String, Object> param = new HashMap<>(2);
-            param.put("itemId", itemId);
-            param.put("increment", increment);
-            this.itemDao.updateInventoryQuantity(param);  // 更新库存
-        }
+//        for (LineItem lineItem : order.getLineItems()) {
+//
+//            String itemId = lineItem.getItemId();
+//            Integer increment = lineItem.getQuantity();
+//            Map<String, Object> param = new HashMap<>(2);
+//            param.put("itemId", itemId);
+//            param.put("increment", increment);
+//            this.itemDao.updateInventoryQuantity(param);  // 更新库存
+//        }
 
         // 插入订单
         boolean flag1 = this.orderDao.insertOrder(order);
 
         boolean flag2 = this.orderDao.insertOrderStatus(order);
-        boolean flag3 = false;
-        // 插入订单项
-        for (LineItem lineItem : order.getLineItems()) {
-            lineItem.setOrderId(order.getOrderId());
-            if(this.lineItemDao.insertLineItem(lineItem))
-            {
-                j++;// 插入每个订单项
-            }
-        }
+//        boolean flag3 = false;
+//        // 插入订单项
+//        for (LineItem lineItem : order.getLineItems()) {
+//            lineItem.setOrderId(order.getOrderId());
+//            if(this.lineItemDao.insertLineItem(lineItem))
+//            {
+//                j++;// 插入每个订单项
+//            }
+//        }
 
         return (flag1&&flag2  );
     }

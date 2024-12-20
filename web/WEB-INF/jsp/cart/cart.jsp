@@ -1,24 +1,39 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ page session="true" %>
 <%@ include file="../common/top.jsp" %>
 
+<!-- 页面标题 -->
+<title>Shopping Cart</title>
+
+<!-- 购物车的样式 -->
+<head>
+    <link rel="stylesheet" href="css/cart.css" type="text/css">
+</head>
+
 <div id="BackLink">
-    <stripes:link beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean">
-        Return to Main Menu
-    </stripes:link>
+    <a href="mainForm">Return to Main Menu</a>
 </div>
 
 <div id="Catalog">
+    <!-- 购物车部分 -->
     <div id="Cart">
         <h2>Shopping Cart</h2>
 
         <!-- 错误信息展示 -->
         <c:if test="${not empty errorMessage}">
-            <div class="error-message" style="color: red; font-weight: bold;">
+            <div class="error-message">
                     ${errorMessage}
             </div>
         </c:if>
 
+        <!-- 购物车表单 -->
         <form action="<%= request.getContextPath() %>/updateCart" method="post">
-            <table>
+            <table id="cartTable">
+                <thead>
                 <tr>
                     <th><b>Item ID</b></th>
                     <th><b>Product ID</b></th>
@@ -27,16 +42,18 @@
                     <th><b>Quantity</b></th>
                     <th><b>List Price</b></th>
                     <th><b>Total Cost</b></th>
-                    <th>&nbsp;</th>
                 </tr>
-
-                <c:if test="${sessionScope.cart.numberOfItems == 0}">
+                </thead>
+                <tbody>
+                <!-- 购物车为空时显示 -->
+                <c:if test="${empty cart.cartItemList}">
                     <tr>
-                        <td colspan="8"><b>Your cart is empty.</b></td>
+                        <td colspan="7"><b>Your cart is empty.</b></td>
                     </tr>
                 </c:if>
 
-                <c:forEach var="cartItem" items="${sessionScope.cart.cartItemList}">
+                <!-- 购物车项目展示 -->
+                <c:forEach var="cartItem" items="${cart.cartItemList}">
                     <tr>
                         <td>
                             <a href="itemForm?itemId=${cartItem.item.itemId}">${cartItem.item.itemId}</a>
@@ -49,8 +66,7 @@
                         </td>
                         <td>${cartItem.inStock}</td>
                         <td>
-                            <input type="number" name="quantity_${cartItem.item.itemId}" value="${cartItem.quantity}">
-                            <input type="hidden" name="itemId" value="${cartItem.item.itemId}">
+                            <input type="number" name="quantity_${cartItem.item.itemId}" value="${cartItem.quantity}" min="1" class="quantity-input" data-item-id="${cartItem.item.itemId}">
                         </td>
                         <td>
                             <fmt:formatNumber value="${cartItem.item.listPrice}" pattern="$#,##0.00" />
@@ -64,21 +80,25 @@
                     </tr>
                 </c:forEach>
 
+                <!-- 小计展示 -->
                 <tr>
-                    <td colspan="7">
-                        Sub Total:
-                        <fmt:formatNumber value="${sessionScope.cart.subTotal}" pattern="$#,##0.00" />
-                    </td>
+                    <td colspan="7"><b>Sub Total:</b> <fmt:formatNumber value="${sessionScope.cart.subTotal}" pattern="$#,##0.00" /></td>
                     <td>&nbsp;</td>
                 </tr>
+                </tbody>
             </table>
-            <input type="submit" value="Update Cart"> <!-- 更新购物车按钮 -->
+
+            
+            <input type="submit" value="Update Cart" class="Button">
         </form>
 
+
         <form action="newOrderForm" method="post" style="display:inline;">
-            <input type="submit" value="New Order">
+            <input type="submit" value="New Order" class="Button">
         </form>
+
     </div>
+
 
     <div id="MyList">
         <c:if test="${sessionScope.loginAccount != null}">
@@ -92,3 +112,40 @@
 </div>
 
 <%@ include file="../common/bottom.jsp" %>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+
+        $('.quantity-input').on('change', function() {
+            var itemId = $(this).data('item-id');
+            var quantity = $(this).val();
+
+            if (quantity == 0) {
+
+                alert("数量不能为0");
+                $(this).val(1);
+                return;
+            }
+
+
+            $.ajax({
+                url: '<%= request.getContextPath() %>/updateCart',
+                method: 'POST',
+                data: {
+                    itemId: itemId,
+                    quantity: quantity
+                },
+                success: function(response) {
+
+                    $('#cartTable').html(response.cartHtml);
+                    $('#subtotal').text(response.subTotal);
+                },
+                error: function(xhr, status, error) {
+                }
+            });
+        });
+    });
+</script>
+

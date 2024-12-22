@@ -9,8 +9,8 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="jstl" />
-          <element id="library" level="project" name="mysql-connector-java-8.0.29" />
           <element id="library" level="project" name="jsp-api" />
+          <element id="library" level="project" name="mysql-connector-j-9.0.0" />
         </element>
       </element>
     </root>

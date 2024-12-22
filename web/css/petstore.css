@@ -159,23 +159,35 @@ th {
 /*    font-family: helvetica, tahoma, arial, verdana, sans-serif;*/
 /*}*/
 
-a:hover {
-    color: #69f;
+/* 全局链接样式 - 初始颜色设置为蓝色 */
+a, a:link, a:visited {
+    color: blue; /* 设置初始颜色为蓝色 */
+    text-decoration: none; /* 去掉下划线 */
+    font-family: helvetica, tahoma, arial, verdana, sans-serif;
 }
 
+/* 悬停时的颜色样式 */
+a:hover {
+    color: #69f; /* 悬停时更改为浅蓝色 */
+    text-decoration: underline; /* 悬停时显示下划线 */
+}
+
+/* 按钮类型链接的初始颜色 */
 a.Button, a.Button:link, a.Button:visited {
     padding: .3ex;
-    color: #fff;
+    color: #fff; /* 按钮内部文字为白色 */
     background-color: #005e21;
     text-decoration: none;
     font-family: helvetica, tahoma, arial, verdana, sans-serif;
     font-size: 1.5ex;
 }
 
+/* 按钮悬停样式 */
 a.Button:hover {
-    color: #000;
+    color: #000; /* 悬停时按钮文字颜色为黑色 */
     background-color: #54c07a;
 }
+
 
 #Logo {
     width: 33%;
@@ -388,9 +400,4 @@ body>#Banner {
     background-color:#fff;
 }
 
-#MyList{
-    width: 30%;
-    float: left;
-    background-color:#ccc;
-    text-align:left;
-}
+

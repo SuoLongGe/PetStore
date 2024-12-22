@@ -6,8 +6,20 @@
 }
 
 #BackLink {
-    margin-bottom: 20px;
+    text-align: right; /* 返回链接右对齐 */
+    padding: 10px 20px;
+    background: #333; /* 背景色 */
+    color: white; /* 字体颜色 */
 }
+
+#BackLink a {
+    color: #ffc107; /* 链接颜色 */
+    text-decoration: none;
+    font-size: 14px; /* 调整字体大小 */
+}
+#BackLink a:hover {
+     text-decoration: underline; /* 悬停显示下划线 */
+ }
 
 /* 左侧内容样式 */
 .catalog-left {

@@ -25,32 +25,45 @@ body {
     text-decoration: underline;
 }
 
-/* 购物车容器样式 */
+/* 网格布局的容器 */
 #Catalog {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    gap: 30px;
     background: white;
-    width: 80%;
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 30px;
+    width: 100vw;
+    height: calc(100vh - 40px);
+    margin: 0;
+    padding: 20px;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* 左侧购物车部分 */
+#Cart {
+    background: white;
+    padding: 70px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    height: 86%;
 }
 
 /* 购物车标题 */
 #Cart h2 {
     text-align: center;
-    font-size: 36px;
+    font-size: 32px;
     color: #333;
     font-weight: bold;
     line-height: 1.5;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     position: relative;
 }
 
 #Cart h2::after {
     content: '';
-    width: 80px;
-    height: 4px;
+    width: 60px;
+    height: 3px;
     background-color: red;
     position: absolute;
     bottom: -10px;
@@ -63,21 +76,63 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    font-size: 16px;
+    font-size: 14px;
+    table-layout: fixed;
 }
 
 th, td {
     text-align: left;
-    padding: 15px;
+    padding: 10px;
     border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
 }
 
+/* 表头样式 */
 th {
     background-color: #f8f8f8;
     font-weight: bold;
     color: #333;
+    text-align: center;
 }
 
+/* 调整输入框的宽度 */
+input[type="text"],
+input[type="number"] {
+    width: 60px; /* 控制输入框的宽度 */
+    padding: 5px;
+    font-size: 14px;
+    text-align: center; /* 内容居中 */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* 统一列宽，确保对齐 */
+th:nth-child(1), td:nth-child(1) {
+    width: 15%; /* 第一列宽度 */
+    text-align: center;
+}
+
+th:nth-child(2), td:nth-child(2) {
+    width: 15%; /* 第二列宽度 */
+}
+
+th:nth-child(3), td:nth-child(3) {
+    width: 30%; /* 第三列宽度，适合描述内容较多的列 */
+}
+
+th:nth-child(4), td:nth-child(4) {
+    width: 10%; /* 第四列宽度 (In Stock?) */
+    text-align: center;
+}
+
+th:nth-child(5), td:nth-child(5),
+th:nth-child(6), td:nth-child(6),
+th:nth-child(7), td:nth-child(7) {
+    width: 10%; /* 对数值型字段设置相同宽度 */
+    text-align: center;
+}
+
+/* 奇偶行颜色交替 */
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
@@ -99,7 +154,7 @@ tr:hover {
     display: inline-block;
     background: red;
     color: white;
-    padding: 10px 20px;
+    padding: 8px 16px;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
@@ -114,10 +169,37 @@ tr:hover {
 
 /* 分隔符样式 */
 #Separator {
-    height: 30px;
+    height: 20px;
 }
 
-/* 我的收藏列表 */
+/* 右侧收藏列表部分 */
 #MyList {
-    margin-top: 20px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    max-width: 300px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+#MyList h3 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+#MyList a {
+    display: inline-block;
+    color: #007bff;
+    text-decoration: none;
+    margin: 3px 0;
+    font-size: 14px;
+}
+
+#MyList a:hover {
+    color: #0056b3;
+    text-decoration: underline;
 }

@@ -65,6 +65,10 @@ function checkUsername(username){
         elMsg1.textContent='用户名不能为空！';
         return;
     }
+    else{
+        elMsg1.textContent='';
+        return;
+    }
 }
 
 function checkPassword(password){
@@ -86,7 +90,7 @@ function checkCaptcha(captcha){
     sendCaptcha(captcha);
 }
 
-elUsername.addEventListener('blur',function (){
+elUsername.addEventListener('input',function (){
     var username = elUsername.value.trim();
     checkUsername(username);
 })

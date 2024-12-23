@@ -254,4 +254,13 @@
         <servlet-name>GetCaptchaServlet</servlet-name>
         <url-pattern>/getCaptcha</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ShowMsgServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.ShowMsgServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowMsgServlet</servlet-name>
+        <url-pattern>/showMsg</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -16,6 +16,7 @@
     </div>
 
 </div>
+<script src="js/main.js"> </script>
 <script>
     function loginSuccess() {
         alert("Login successful, welcome to the PetStore!!");

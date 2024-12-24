@@ -1,0 +1,79 @@
+.order-container {
+    display: flex;
+    justify-content: space-between; /* 左右分布 */
+    align-items: flex-start; /* 对齐顶部 */
+    padding: 20px;
+    font-size:20px;
+}
+.order-steps {
+    width: 60%; /* 设置固定宽度 */
+    max-width: 700px; /* 最大宽度，避免在大屏幕上太宽 */
+    margin-right: 20px;
+}
+/*.order-details {*/
+/*    width: 400px;*/
+/*    background: #fff;*/
+/*    padding: 100px;*/
+/*    border-radius: 8px;*/
+/*    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
+/*    float:right;*/
+/*}*/
+.order-details {
+    width: 35%; /* 设置固定宽度 */
+    position: sticky;
+    top: 20px; /* 使订单详情在滚动时保持固定 */
+    height: fit-content;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.order-details h2 {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: #333;
+}
+.order-details .item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.order-details .item span {
+    font-size: 20px;
+}
+.order-details .item .value {
+    font-weight: bold;
+}
+.order-details .item .value.free {
+    color: #4CAF50;
+}
+.order-details input {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 20px;
+}
+.order-details button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.order-details button:hover {
+    background-color: #45a049;
+}
+.order-details button.disabled {
+    background-color: #ccc;
+    color: #777;
+    cursor: not-allowed;
+}
+.order-details button.enabled {
+    background-color: #4CAF50;
+    color: white;
+}

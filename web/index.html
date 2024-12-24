@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主要界面</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="css/index.css" type="text/css" media="screen"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(45deg, white, #e0f2e9, #88d498, #e0f2e9);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        #Content {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            width: 100%;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        a {
+            display: block;
+            background: #3498db;
+            color: #ffffff;
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.2s ease;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        p {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            text-align: center;
+            margin-top: 30px;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            #Content {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            a {
+                padding: 12px 20px;
+            }
+
+            p {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="Content">
+    <h2>Welcome to Genius's PetStore</h2>
+    <a href="mainForm">Click here to enter the Store</a>
+    <p><sub>&copy; Central South University. All rights reserved.</sub></p>
+</div>
+</body>
+</html>

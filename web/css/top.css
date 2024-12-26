@@ -7,7 +7,7 @@
     width: 1632px;
     margin: 0 auto;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .w2{

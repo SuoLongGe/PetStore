@@ -92,7 +92,7 @@
                     </tbody>
                 </table>
 
-                <input type="submit" value="Update Cart" class="Button">
+<%--                <input type="submit" value="Update Cart" class="Button">--%>
             </form>
 
             <form action="newOrderForm" method="post" style="display:inline;">

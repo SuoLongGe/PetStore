@@ -25,6 +25,8 @@
         alert("Order successfully created!!!!");
     }
 </script>
+<script src="js/productAuto.js"></script>
+<script src="js/order.js"></script>
 
 </body>
 </html>

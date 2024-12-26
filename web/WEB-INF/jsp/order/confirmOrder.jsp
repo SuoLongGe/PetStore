@@ -85,104 +85,41 @@
 
 
   <form action="confirmOrder" method="post" style="display:inline;">
-    <table>
-      <tr>
-        <th align="center" colspan="2">
-          <font size="4">
-            <b>Order</b>
-          </font>
-          <br />
-          <font size="3">
-            <b>
-              <fmt:formatDate value="${sessionScope.order.orderDate}" pattern="yyyy/MM/dd hh:mm:ss" />
-            </b>
-          </font>
-        </th>
-      </tr>
+    <div class="order-details">
+      <h2>Order details</h2>
+
+      <div class="item">
+        <span>UserId</span>
+        <span class="value">${sessionScope.loginAccount.username}</span>
+      </div>
+      <div class="item">
+        <span>price</span>
+        <span class="value">${sessionScope.order.totalPrice}</span>
+      </div>
+      <div class="item">
+        <span>Postage</span>
+        <span class="value free">free</span>
+      </div>
+      <div class="item">
+        <span>Mailing method</span>
+        <span class="value free">SF Express</span>
+      </div>
+
+      <hr>
+      <div class="item">
+        <span>total</span>
+        <span class="value">${sessionScope.order.totalPrice}</span>
+      </div>
+      <div class="item">
+        <span>Delivery time</span>
+        <span class="value">2024-12-31</span>
+      </div>
+      <button type="submit" id="ComformOrderButton" >Comfirm</button>
+
+    </div>
 
 
-      <!-- Billing Address Section -->
-      <tr>
-        <th colspan="2">Billing Address</th>
-      </tr>
-      <tr>
-        <td>First name:</td>
-        <td><b><c:out value="${sessionScope.order.billToFirstName}" /></b></td>
-      </tr>
-      <tr>
-        <td>Last name:</td>
-        <td><b><c:out value="${sessionScope.order.billToLastName}" /></b></td>
-      </tr>
-      <tr>
-        <td>Address 1:</td>
-        <td><b><c:out value="${sessionScope.order.billAddress1}" /></b></td>
-      </tr>
-      <tr>
-        <td>Address 2:</td>
-        <td><b><c:out value="${sessionScope.order.billAddress2}" /></b></td>
-      </tr>
-      <tr>
-        <td>City:</td>
-        <td><b><c:out value="${sessionScope.order.billCity}" /></b></td>
-      </tr>
-      <tr>
-        <td>State:</td>
-        <td><b><c:out value="${sessionScope.order.billState}" /></b></td>
-      </tr>
-      <tr>
-        <td>Zip:</td>
-        <td><b><c:out value="${sessionScope.order.billZip}" /></b></td>
-      </tr>
-      <tr>
-        <td>Country:</td>
-        <td><b><c:out value="${sessionScope.order.billCountry}" /></b></td>
-      </tr>
 
-
-      <!-- Shipping Address Section -->
-      <tr>
-        <th colspan="2">Shipping Address</th>
-      </tr>
-      <tr>
-        <td>First name:</td>
-        <td><b><c:out value="${sessionScope.order.shipToFirstName}" /></b></td>
-      </tr>
-      <tr>
-        <td>Last name:</td>
-        <td><b><c:out value="${sessionScope.order.shipToLastName}" /></b></td>
-      </tr>
-      <tr>
-        <td>Address 1:</td>
-        <td><b><c:out value="${sessionScope.order.shipAddress1}" /></b></td>
-      </tr>
-      <tr>
-        <td>Address 2:</td>
-        <td><b><c:out value="${sessionScope.order.shipAddress2}" /></b></td>
-      </tr>
-      <tr>
-        <td>City:</td>
-        <td><b><c:out value="${sessionScope.order.shipCity}" /></b></td>
-      </tr>
-      <tr>
-        <td>State:</td>
-        <td><b><c:out value="${sessionScope.order.shipState}" /></b></td>
-      </tr>
-      <tr>
-        <td>Zip:</td>
-        <td><b><c:out value="${sessionScope.order.shipZip}" /></b></td>
-      </tr>
-      <tr>
-        <td>Country:</td>
-        <td><b><c:out value="${sessionScope.order.shipCountry}" /></b></td>
-      </tr>
-
-
-      <tr>
-        <td colspan="2">
-          <input type="submit" name="confirmed" value="Confirm Order">
-        </td>
-      </tr>
-    </table>
   </form>
 </div>
 

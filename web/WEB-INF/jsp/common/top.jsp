@@ -9,6 +9,9 @@
     <meta charset="UTF-8">
     <link rel="StyleSheet" href="css/petstore.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/top.css">
+    <link rel="stylesheet" href="css/productAutoComplete.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
     <title>Genius's PetStore</title>
     <script src="https://kit.fontawesome.com/1c3b84e567.js" crossorigin="anonymous"></script>
 </head>
@@ -66,10 +69,19 @@
             <img src="images/top-bar.gif" />
             Mystore</a>
         <div class="search-content">
-            <form action="searchProductForm" method="post">
-            <input type="text" name="keyword" size="18" class="search-input" />
-            <input type="submit" name="searchProduct" value="Search" class="btn search-btn">
+            <form action="searchProductForm" method="post" >
+                <input type="text" name="keyword" size="18" class="search-input" id="keyword" autocomplete="false"/>
+                <input type="submit" name="searchProduct" value="Search" class="btn search-btn">
             </form>
+            <div id="productAutoComplete">
+                <ul id="productAutoList">
+                    <%--                    <li class="productAutoItem">Amazon Parrot</li>--%>
+                    <%--                    <li class="productAutoItem">Labrador Retriever</li>--%>
+                    <%--                    <li class="productAutoItem">Golden Retriever</li>--%>
+                    <%--                    <li class="productAutoItem">Labrador Retriever</li>--%>
+                    <%--                    <li class="productAutoItem">Rattlesnake</li>--%>
+                </ul>
+            </div>
             <div class="quick-head"><a href="categoryForm?categoryId=FISH">Fish</a></div>
             <div class="quick"><a href="categoryForm?categoryId=DOGS">Dog</a></div>
             <div class="quick"><a href="categoryForm?categoryId=REPTILES">Reptiles</a></div>
@@ -79,4 +91,4 @@
     </div>
 
 </div>
-<div id="Content">
+<div id="Content" class="contentPro">

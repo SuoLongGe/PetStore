@@ -1,0 +1,73 @@
+#productAutoComplete{
+        /*background: #ccc;*/
+        /*position:relative;*/
+        /*top: 117px;*/
+        /*left: -505px;*/
+        /*width: 624px;*/
+
+        /*min-width: 624px;*/
+        /*z-index: 99999999999; !* 数值越大，越在最上层 *!*/
+        /*overflow-y: scroll;   !* 允许垂直滚动，防止内容被遮挡 *!*/
+        /*display: none;*/
+
+
+    /*background: #ccc;*/
+    /*position: absolute; !* 改为 absolute，固定在父容器的相对位置 *!*/
+    /*top: 117px; !* 你可以根据需要调整这个值 *!*/
+    /*left: 0; !* 保持左侧对齐 *!*/
+    /*width: 624px;*/
+    /*min-width: 624px;*/
+    /*z-index: 99999999999;*/
+    /*overflow-y: scroll;*/
+    /*display: none;*/
+
+
+    background: #ccc;
+    position: absolute; /* 改为 fixed，固定在屏幕上的指定位置 */
+    top: 71%;
+    left: 531px; /* 居中显示，可以根据需要调整 */
+    transform: translateX(-50%); /* 使其完全居中 */
+    width: 624px;
+    min-width: 624px;
+    overflow-y: scroll;
+    display: none;
+    z-index: 99999;
+    transform: translateZ(1px);
+    overflow: visible;
+}
+#productAutoComplete ul {
+         padding: 0;
+         margin: 0;
+         list-style-type: none;
+}
+
+#productAutoComplete li {
+        padding: 8px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+}
+
+/*#productAutoList{*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    border:1px solid #aaa;*/
+/*}*/
+
+/*.productAutoItem{*/
+/*    list-style: none;*/
+/*    height:20px;*/
+/*    line-height: 20px;*/
+/*    font-size:10px;*/
+/*    text-align: left;*/
+/*    padding-left: 5px;*/
+/*    margin-top: 5px;*/
+/*    border-bottom: 1px solid #666;*/
+/*    color:#005e21;*/
+
+/*}*/
+#productAutoList{
+
+}
+.productAutoItem{
+    cursor: pointer;
+}

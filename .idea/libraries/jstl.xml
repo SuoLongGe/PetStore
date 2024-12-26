@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="jstl">
     <CLASSES>
-      <root url="jar://D:/tomcat/apache-tomcat-8.5.35/lib/jstl.jar!/" />
-      <root url="jar://D:/tomcat/apache-tomcat-8.5.35/lib/standard.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jakarta-taglibs-standard-1.1.2/lib/jstl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jakarta-taglibs-standard-1.1.2/lib/standard.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

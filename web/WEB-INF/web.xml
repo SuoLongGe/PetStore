@@ -263,4 +263,12 @@
         <servlet-name>ShowMsgServlet</servlet-name>
         <url-pattern>/showMsg</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>PruductAutoCompleteServlet</servlet-name>
+        <servlet-class>web.petstore.inerWeb.servlet.PruductAutoCompleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PruductAutoCompleteServlet</servlet-name>
+        <url-pattern>/productAuto</url-pattern>
+    </servlet-mapping>
 </web-app>
